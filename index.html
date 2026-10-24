@@ -73,6 +73,7 @@ p{margin:0}
 .top .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}
 .logo-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font:italic 600 1.2rem/1 var(--f-serif)}
+img.logo-mark{border:none;width:44px;height:44px;object-fit:cover;border-radius:50%}
 .logo-text{font-weight:800;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
 .logo-text small{display:block;font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:4px}
 .nav{display:flex;gap:28px;margin-left:auto;font-weight:600;font-size:.95rem}
@@ -594,7 +595,7 @@ footer a:hover{color:var(--gold-2)}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
-</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23081426' stroke='%23D4AF5A' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23D4AF5A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+</style><link rel="icon" type="image/png" href="img/logo.png">
 <link rel="canonical" href="https://monsieurdeveloppeur.com/">
 <link rel="alternate" hreflang="fr" href="https://monsieurdeveloppeur.com/">
 <link rel="alternate" hreflang="pl" href="https://monsieurdeveloppeur.com/pl/">
@@ -612,7 +613,7 @@ footer a:hover{color:var(--gold-2)}
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#accueil" aria-label="Monsieur Développeur, accueil">
-      <span class="logo-mark">M</span>
+      <img class="logo-mark" src="img/logo.png" alt="" width="44" height="44">
       <span class="logo-text">Monsieur Développeur<small>Nosy Komba · Madagascar</small></span>
     </a>
     <nav class="nav" aria-label="Navigation principale">
@@ -935,12 +936,13 @@ footer a:hover{color:var(--gold-2)}
         <p class="lead">Voici les réponses aux questions les plus fréquentes de nos clients. Si vous ne trouvez pas votre réponse, n'hésitez pas à nous contacter.</p>
       </div>
       <div class="faq">
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><b>Combien de temps pour avoir mon site ?</b></summary><p>Entre 2 et 12 semaines selon la taille du projet. Un site simple se situe au début de cette fourchette. Le délai exact est indiqué dans le devis, et dépend aussi du moment où nous recevons vos photos et vos textes.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m3 17 5-4 4 3 4-4 5 5"/></svg></span><b>Je n'ai pas de textes ni de bonnes photos. C'est un problème ?</b></summary><p>Non. Nous vous aidons à écrire les textes et à choisir vos meilleures photos. Indiquez-le simplement dans le formulaire.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg></span><b>Pourrai-je modifier mon site moi-même ?</b></summary><p>Oui. Nous vous montrons comment changer un prix, une photo ou un texte. Et si vous préférez, nous pouvons nous en occuper.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><b>J'ai déjà un site. Vous pouvez le refaire ?</b></summary><p>Oui, nous faisons aussi des refontes. Indiquez l'adresse de votre site dans le formulaire, nous le regardons avant de vous répondre.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Le site peut-il être en plusieurs langues ?</b></summary><p>Oui. Le pack Tourisme inclut le français et l'anglais. D'autres langues sont possibles en option.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>Vous êtes à Madagascar. Comment travaille-t-on ensemble ?</b></summary><p>Entièrement à distance : visio, WhatsApp et e-mail. Nous travaillons ainsi avec des clients à La Réunion, à Maurice, en France, en Suisse et en Pologne.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b>Combien coûte un site internet ?</b></summary><p>Nos sites démarrent à 390 € pour une présence en ligne élégante, et le pack Tourisme Complet à partir de 990 €. Demandez votre devis gratuit : vous recevez un prix exact et personnalisé sous 48 h, sans engagement.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><b>Combien de temps pour avoir mon site ?</b></summary><p>Entre 2 et 12 semaines selon le projet — un site simple peut être en ligne très vite. Le délai exact figure dans votre devis, et nous vous tenons informés à chaque étape.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m3 17 5-4 4 3 4-4 5 5"/></svg></span><b>Je n'ai pas de textes ni de bonnes photos. C'est un problème ?</b></summary><p>Au contraire : c'est notre métier. Nous écrivons des textes qui vendent et mettons vos photos en valeur. Indiquez-le simplement dans le formulaire, nous nous occupons du reste.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="2"/><rect x="17" y="13" width="4" height="6" rx="2"/><path d="M20 19a3 3 0 0 1-3 3h-3"/></svg></span><b>Qui s'occupe du site après la mise en ligne ?</b></summary><p>Nous. Un prix à changer, une photo à ajouter, une offre à mettre en avant ? Un message WhatsApp suffit, et c'est fait. Vous vous concentrez sur vos clients, nous veillons sur votre site.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><b>J'ai déjà un site. Vous pouvez le refaire ?</b></summary><p>Oui, les refontes sont l'une de nos spécialités. Indiquez l'adresse de votre site dans le formulaire : nous l'analysons gratuitement et vous disons concrètement ce qui peut vous apporter plus de clients.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Le site peut-il être en plusieurs langues ?</b></summary><p>Oui. Le pack Tourisme Complet inclut déjà le français et l'anglais — idéal pour les voyageurs internationaux. D'autres langues sont possibles en option.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>Vous êtes à Madagascar. Comment travaille-t-on ensemble ?</b></summary><p>Entièrement à distance, et très simplement : visio, WhatsApp, e-mail. Nos clients en France, en Suisse, à La Réunion, à Maurice et en Pologne travaillent ainsi avec nous depuis des années.</p></details>
       </div>
     </div>
   </section>
@@ -1057,7 +1059,7 @@ footer a:hover{color:var(--gold-2)}
 
 <footer>
   <div class="wrap">
-    <span>© 2018–2026 Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar</span>
+    <span style="display:inline-flex;align-items:center;gap:10px"><img src="img/logo.png" alt="" width="30" height="30" loading="lazy">© 2018–2026 Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar</span>
     <nav aria-label="Liens du pied de page">
       <a href="#tarifs">Tarifs</a>
       <a href="#devis">Contact</a>

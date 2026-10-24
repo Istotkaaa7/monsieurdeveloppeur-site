@@ -73,6 +73,7 @@ p{margin:0}
 .top .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}
 .logo-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font:italic 600 1.2rem/1 var(--f-serif)}
+img.logo-mark{border:none;width:44px;height:44px;object-fit:cover;border-radius:50%}
 .logo-text{font-weight:800;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
 .logo-text small{display:block;font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:4px}
 .nav{display:flex;gap:28px;margin-left:auto;font-weight:600;font-size:.95rem}
@@ -594,7 +595,7 @@ footer a:hover{color:var(--gold-2)}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
-</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23081426' stroke='%23D4AF5A' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23D4AF5A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+</style><link rel="icon" type="image/png" href="../img/logo.png">
 <link rel="canonical" href="https://monsieurdeveloppeur.com/pl/">
 <link rel="alternate" hreflang="fr" href="https://monsieurdeveloppeur.com/">
 <link rel="alternate" hreflang="pl" href="https://monsieurdeveloppeur.com/pl/">
@@ -612,7 +613,7 @@ footer a:hover{color:var(--gold-2)}
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#accueil" aria-label="Monsieur Développeur, strona główna">
-      <span class="logo-mark">M</span>
+      <img class="logo-mark" src="../img/logo.png" alt="" width="44" height="44">
       <span class="logo-text">Monsieur Développeur<small>Nosy Komba · Madagaskar</small></span>
     </a>
     <nav class="nav" aria-label="Nawigacja główna">
@@ -935,12 +936,13 @@ footer a:hover{color:var(--gold-2)}
         <p class="lead">Oto odpowiedzi na pytania, które nasi klienci zadają najczęściej. Jeśli nie znajdziesz swojej — po prostu napisz do nas.</p>
       </div>
       <div class="faq">
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><b>Ile trwa stworzenie strony?</b></summary><p>Od 2 do 12 tygodni, zależnie od wielkości projektu. Prosta strona mieści się na początku tego przedziału. Dokładny termin podajemy w wycenie — zależy też od tego, kiedy otrzymamy Twoje zdjęcia i teksty.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m3 17 5-4 4 3 4-4 5 5"/></svg></span><b>Nie mam tekstów ani dobrych zdjęć. Czy to problem?</b></summary><p>Nie. Pomożemy Ci napisać teksty i wybrać najlepsze zdjęcia. Po prostu zaznacz to w formularzu.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg></span><b>Czy mogę potem samodzielnie edytować stronę?</b></summary><p>Tak. Pokażemy Ci, jak zmienić cenę, zdjęcie czy tekst. A jeśli wolisz — zajmiemy się tym my.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><b>Mam już stronę. Możecie ją przebudować?</b></summary><p>Tak, robimy też przebudowy. Podaj adres swojej strony w formularzu — obejrzymy ją, zanim odpowiemy.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Czy strona może być w kilku językach?</b></summary><p>Tak. Pakiet turystyczny zawiera francuski i angielski. Inne języki są możliwe w opcji.</p></details>
-        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>Jesteście na Madagaskarze. Jak wygląda współpraca?</b></summary><p>W pełni zdalnie: wideorozmowy, WhatsApp i e-mail. Tak pracujemy z klientami na Reunionie, Mauritiusie, we Francji, Szwajcarii i w Polsce.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b>Ile kosztuje strona internetowa?</b></summary><p>Nasze strony zaczynają się od 390 € za elegancką wizytówkę online, a Kompletna Strona Turystyczna — od 990 €. Poproś o bezpłatną wycenę: dokładną, dopasowaną cenę otrzymasz w 48 h, bez zobowiązań.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><b>Ile trwa stworzenie strony?</b></summary><p>Od 2 do 12 tygodni, zależnie od projektu — prosta strona może być online bardzo szybko. Dokładny termin znajdziesz w wycenie, a o postępach informujemy na bieżąco.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m3 17 5-4 4 3 4-4 5 5"/></svg></span><b>Nie mam tekstów ani dobrych zdjęć. Czy to problem?</b></summary><p>Wręcz przeciwnie — to nasza praca. Piszemy teksty, które sprzedają, i wydobywamy to, co najlepsze z Twoich zdjęć. Po prostu zaznacz to w formularzu, resztą zajmiemy się my.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="2"/><rect x="17" y="13" width="4" height="6" rx="2"/><path d="M20 19a3 3 0 0 1-3 3h-3"/></svg></span><b>Kto zajmuje się stroną po starcie?</b></summary><p>My. Zmiana ceny, nowe zdjęcie, promocja do wyeksponowania? Wystarczy wiadomość na WhatsApp — i zrobione. Ty zajmujesz się swoimi klientami, my czuwamy nad Twoją stroną.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><b>Mam już stronę. Możecie ją przebudować?</b></summary><p>Tak, przebudowy to jedna z naszych specjalności. Podaj adres w formularzu: bezpłatnie przeanalizujemy Twoją stronę i powiemy konkretnie, co może przynieść Ci więcej klientów.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Czy strona może być w kilku językach?</b></summary><p>Tak. Kompletna Strona Turystyczna zawiera już francuski i angielski — idealnie dla gości z zagranicy. Inne języki są dostępne w opcji.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>Jesteście na Madagaskarze. Jak wygląda współpraca?</b></summary><p>W pełni zdalnie i bardzo prosto: wideorozmowy, WhatsApp, e-mail. Tak od lat pracują z nami klienci we Francji, Szwajcarii, na Reunionie, Mauritiusie i w Polsce.</p></details>
       </div>
     </div>
   </section>
@@ -1057,7 +1059,7 @@ footer a:hover{color:var(--gold-2)}
 
 <footer>
   <div class="wrap">
-    <span>© 2018–2026 Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar</span>
+    <span style="display:inline-flex;align-items:center;gap:10px"><img src="../img/logo.png" alt="" width="30" height="30" loading="lazy">© 2018–2026 Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar</span>
     <nav aria-label="Linki w stopce">
       <a href="#tarifs">Cennik</a>
       <a href="#devis">Kontakt</a>
