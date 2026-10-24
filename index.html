@@ -1,10 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Monsieur Développeur</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Agence web basée à Nosy Komba, Madagascar. Sites internet rapides et réseaux sociaux pour le tourisme et toutes les entreprises, partout dans le monde.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+img{max-width:100%}
+[hidden]{display:none !important}
 /* Layout: one committed night-ocean world. Navy depths, gold for what sells (accents, prices, actions), sky blue for light touches.
    Hero = animated dotted ocean + phone receiving real-looking booking requests. Then short sales bands down to a budget form. */
 :root{
@@ -485,6 +493,7 @@ h1 .rot.in{transform:translateY(.25em);opacity:0}
 .pbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .pbar i{display:block;height:6px;border-radius:999px;background:rgba(169,180,203,.22);transition:background .4s ease, box-shadow .4s ease}
 .pbar i.on{background:linear-gradient(90deg,var(--gold-2),var(--gold));box-shadow:0 0 12px rgba(212,175,90,.5)}
+#form-body{display:grid;gap:24px}
 .fstep{display:grid;gap:22px;animation:steprise .35s ease}
 @keyframes steprise{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 .fnav{display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line-soft);padding-top:20px}
@@ -577,7 +586,16 @@ footer a:hover{color:var(--gold-2)}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
-</style>
+</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23081426' stroke='%23D4AF5A' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23D4AF5A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://monsieurdeveloppeur.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Monsieur Développeur — Agence digitale, Nosy Komba">
+<meta property="og:description" content="Sites internet modernes pour le tourisme, l'hôtellerie et les entreprises. Devis gratuit sous 48 h.">
+<meta property="og:url" content="https://monsieurdeveloppeur.com/">
+<meta property="og:image" content="https://monsieurdeveloppeur.com/img/feat-celestia.jpg">
+</head>
+<body>
+
 
 <header class="top">
   <div class="wrap">
@@ -927,7 +945,7 @@ footer a:hover{color:var(--gold-2)}
       </div>
 
       <form id="quote" novalidate>
-        <div id="form-body" style="display:grid;gap:24px">
+        <div id="form-body">
           <div class="progress">
             <div class="ptop"><b id="p-title">Votre projet</b><span id="p-count">Étape 1 sur 3</span></div>
             <div class="pbar" id="pbar"><i class="on"></i><i></i><i></i></div>
@@ -1009,7 +1027,7 @@ footer a:hover{color:var(--gold-2)}
         <div class="done" id="done" hidden>
           <span class="eyebrow">Merci !</span>
           <h3>Votre demande est prête.</h3>
-          <p class="lead" style="font-size:1rem">Envoyez-la sur WhatsApp en un clic, ou copiez-la pour nous l'envoyer par e-mail à contact@monsieurdeveloppeur.com.</p>
+          <p class="lead" style="font-size:1rem">WhatsApp s'ouvre avec votre message prêt à envoyer. S'il ne s'est pas ouvert, cliquez ci-dessous — ou copiez la demande pour l'envoyer à contact@monsieurdeveloppeur.com.</p>
           <div class="summary" id="summary"></div>
           <div class="done-actions">
             <a class="btn btn-wa" id="wa-send" href="https://wa.me/261329968289" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
@@ -1236,10 +1254,15 @@ footer a:hover{color:var(--gold-2)}
     var text = lines.join('\n');
 
     summaryEl.textContent = text;
-    document.getElementById('wa-send').href = 'https://wa.me/261329968289?text=' + encodeURIComponent(text);
+    var waUrl = 'https://wa.me/261329968289?text=' + encodeURIComponent(text);
+    document.getElementById('wa-send').href = waUrl;
     body.hidden = true;
     done.hidden = false;
     done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+    // envoi direct : ouvre WhatsApp avec la demande pré-remplie (le panneau reste en secours)
+    var a = document.createElement('a');
+    a.href = waUrl; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
   });
 
   document.getElementById('edit').addEventListener('click', function(){
@@ -1260,3 +1283,5 @@ footer a:hover{color:var(--gold-2)}
   });
 })();
 </script>
+</body>
+</html>
