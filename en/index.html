@@ -162,6 +162,8 @@ h1 .rot.in{transform:translateY(.25em);opacity:0}
   .hero-copy{max-width:none}
 }
 
+.scene-tag{position:absolute;z-index:2;right:clamp(14px,3.5vw,56px);bottom:11%;font:italic 600 clamp(1.1rem,2vw,1.65rem)/1.25 var(--f-serif);color:var(--gold-2);text-align:right;transform:rotate(-4deg);text-shadow:0 2px 14px rgba(0,0,0,.6);pointer-events:none}
+@media (max-width:980px){.scene-tag{bottom:15%;right:18px;font-size:1.12rem}}
 /* Hero stats */
 .stats{display:grid;grid-template-columns:repeat(4,max-content);gap:16px 0;padding-top:10px}
 .stat{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center;padding:0 24px;border-left:1px solid rgba(169,180,203,.22)}
@@ -640,6 +642,7 @@ footer a:hover{color:var(--gold-2)}
   <section class="hero" style="padding-bottom:40px">
     <div class="scene" aria-hidden="true">
       <img src="../img/hero-scene.jpg" alt="" fetchpriority="high">
+      <span class="scene-tag">Projects that<br>take you places</span>
       <div class="feed" id="feed"></div>
     </div>
     <div class="wrap">
@@ -727,7 +730,7 @@ footer a:hover{color:var(--gold-2)}
       <div class="prices">
         <article class="price">
           <span class="pbadge">Essential</span>
-          <img class="pmock" src="../img/tarif-ess.jpg" alt="" loading="lazy">
+          <img class="pmock" src="../img/tarif-ess-en.jpg" alt="" loading="lazy">
           <h3>Your online presence</h3>
           <div class="amount"><small>from</small><b>390 €</b></div>
           <p class="for">Your online business card: one elegant page so people can find you and get in touch.</p>
@@ -742,7 +745,7 @@ footer a:hover{color:var(--gold-2)}
         <article class="price star">
           <span class="hand">Perfect for hotels, lodges and tour operators</span>
           <span class="flag">♛ Most popular</span>
-          <img class="pmock" src="../img/tarif-tour.jpg" alt="" loading="lazy">
+          <img class="pmock" src="../img/tarif-tour-en.jpg" alt="" loading="lazy">
           <h3>Complete Tourism Website</h3>
           <div class="amount"><small>from</small><b>990 €</b></div>
           <p class="for">For hotels, lodges, guides and activity providers: a website built to turn visits into bookings.</p>
@@ -758,7 +761,7 @@ footer a:hover{color:var(--gold-2)}
         </article>
         <article class="price">
           <span class="pbadge">Premium Showcase</span>
-          <img class="pmock" src="../img/tarif-vit.jpg" alt="" loading="lazy">
+          <img class="pmock" src="../img/tarif-vit-en.jpg" alt="" loading="lazy">
           <h3>A tailor-made website for your business</h3>
           <div class="amount"><small>from</small><b>690 €</b></div>
           <p class="for">For any business that wants to present all its services and rank better on Google.</p>
