@@ -1028,6 +1028,7 @@ footer a:hover{color:var(--gold-2)}
           <span class="eyebrow">Merci !</span>
           <h3>Votre demande est prête.</h3>
           <p class="lead" style="font-size:1rem">WhatsApp s'ouvre avec votre message prêt à envoyer. S'il ne s'est pas ouvert, cliquez ci-dessous — ou copiez la demande pour l'envoyer à contact@monsieurdeveloppeur.com.</p>
+          <p id="mail-note" hidden style="color:var(--gold-2);font-weight:600">✓ Votre demande nous a aussi été transmise par e-mail — une confirmation vient de vous être envoyée.</p>
           <div class="summary" id="summary"></div>
           <div class="done-actions">
             <a class="btn btn-wa" id="wa-send" href="https://wa.me/261329968289" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
@@ -1259,6 +1260,33 @@ footer a:hover{color:var(--gold-2)}
     body.hidden = true;
     done.hidden = false;
     done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+    // envoi e-mail : copie pour l'agence + confirmation automatique au client (FormSubmit)
+    try {
+      fetch('https://formsubmit.co/ajax/contact@monsieurdeveloppeur.com', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({
+          _subject: 'Nouvelle demande de devis — ' + val('f-name') + ' (' + checked('budget').join(', ') + ')',
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: email,
+          _honey: '',
+          _autoresponse: "Bonjour, merci pour votre demande de devis ! Nous l'avons bien reçue et nous revenons vers vous sous 48 h avec une proposition claire. Pour aller plus vite, vous pouvez aussi nous écrire directement sur WhatsApp : +261 32 99 682 89. À très vite — Joanna & Clément, Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar · monsieurdeveloppeur.com",
+          'Nom': val('f-name'),
+          'Entreprise': val('f-company') || '—',
+          'E-mail': email,
+          'Téléphone / WhatsApp': val('f-phone'),
+          'Activité': checked('activity').join(', ') || '—',
+          'Besoin': checked('need').join(', ') || '—',
+          'Formule vue': pack || '—',
+          'Budget': checked('budget').join(', '),
+          'Site actuel': val('f-site') || '—',
+          'Message': val('f-msg') || '—'
+        })
+      }).then(function(r){
+        if (r.ok) { var n = document.getElementById('mail-note'); if (n) n.hidden = false; }
+      }).catch(function(){});
+    } catch (e) {}
     // envoi direct : ouvre WhatsApp avec la demande pré-remplie (le panneau reste en secours)
     var a = document.createElement('a');
     a.href = waUrl; a.target = '_blank'; a.rel = 'noopener';
