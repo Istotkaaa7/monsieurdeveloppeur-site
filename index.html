@@ -1274,13 +1274,14 @@ footer a:hover{color:var(--gold-2)}
     done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
     // envoi e-mail : copie pour l'agence + confirmation automatique au client (FormSubmit)
     try {
-      fetch('https://formsubmit.co/ajax/contact@monsieurdeveloppeur.com', {
+      fetch('https://formsubmit.co/ajax/joanna.istotka7@gmail.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
           _subject: 'Nouvelle demande de devis — ' + val('f-name') + ' (' + checked('budget').join(', ') + ')',
           _template: 'table',
           _captcha: 'false',
+          _cc: 'clement.tournier7@gmail.com',
           _replyto: email,
           _honey: '',
           _autoresponse: "Bonjour, merci pour votre demande de devis ! Nous l'avons bien reçue et nous revenons vers vous sous 48 h avec une proposition claire. Pour aller plus vite, vous pouvez aussi nous écrire directement sur WhatsApp : +261 32 99 682 89. À très vite — Joanna & Clément, Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar · monsieurdeveloppeur.com",

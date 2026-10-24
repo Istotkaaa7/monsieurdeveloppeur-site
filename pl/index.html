@@ -1274,13 +1274,14 @@ footer a:hover{color:var(--gold-2)}
     done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
     // envoi e-mail : copie pour l'agence + confirmation automatique au client (FormSubmit)
     try {
-      fetch('https://formsubmit.co/ajax/contact@monsieurdeveloppeur.com', {
+      fetch('https://formsubmit.co/ajax/joanna.istotka7@gmail.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
           _subject: 'Nowe zapytanie o wycenę (PL) — ' + val('f-name') + ' (' + checked('budget').join(', ') + ')',
           _template: 'table',
           _captcha: 'false',
+          _cc: 'clement.tournier7@gmail.com',
           _replyto: email,
           _honey: '',
           _autoresponse: "Dzień dobry, dziękujemy za zapytanie o wycenę! Otrzymaliśmy je i wrócimy do Ciebie w ciągu 48 h z konkretną propozycją. Jeśli chcesz szybciej — napisz do nas na WhatsApp: +261 32 99 682 89. Do usłyszenia — Joanna i Clément, Agence Digitale Monsieur Développeur · Nosy Komba, Madagaskar · monsieurdeveloppeur.com",

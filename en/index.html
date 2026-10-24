@@ -1274,13 +1274,14 @@ footer a:hover{color:var(--gold-2)}
     done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
     // envoi e-mail : copie pour l'agence + confirmation automatique au client (FormSubmit)
     try {
-      fetch('https://formsubmit.co/ajax/contact@monsieurdeveloppeur.com', {
+      fetch('https://formsubmit.co/ajax/joanna.istotka7@gmail.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
           _subject: 'New quote request (EN) — ' + val('f-name') + ' (' + checked('budget').join(', ') + ')',
           _template: 'table',
           _captcha: 'false',
+          _cc: 'clement.tournier7@gmail.com',
           _replyto: email,
           _honey: '',
           _autoresponse: "Hello, thank you for your quote request! We've received it and will get back to you within 48 hours with a clear proposal. For a faster reply, you can also message us directly on WhatsApp: +261 32 99 682 89. Talk soon — Joanna & Clément, Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar · monsieurdeveloppeur.com",
