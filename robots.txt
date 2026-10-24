@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://monsieurdeveloppeur.com/sitemap.xml

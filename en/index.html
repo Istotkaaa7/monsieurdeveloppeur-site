@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Monsieur Développeur</title>
+<meta name="description" content="Web agency based in Nosy Komba, Madagascar. Fast websites and social media for tourism and businesses of all kinds, worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+img{max-width:100%}
+[hidden]{display:none !important}
+/* Layout: one committed night-ocean world. Navy depths, gold for what sells (accents, prices, actions), sky blue for light touches.
+   Hero = animated dotted ocean + phone receiving real-looking booking requests. Then short sales bands down to a budget form. */
+:root{
+  color-scheme:dark;
+  --night:#070F1F;     /* page */
+  --deep:#0B1730;      /* alternate band */
+  --card:#13264D;      /* raised surfaces */
+  --ink:#F4F1E8;       /* warm white text */
+  --muted:#C4CDDD;
+  --line:rgba(212,175,90,.34);
+  --line-soft:rgba(169,180,203,.26);
+  --gold:#D4AF5A;
+  --gold-2:#F4DE9F;
+  --gold-ink:#0A1428;
+  --sky:#86C8F2;
+  --wa:#25D366;
+  --danger:#FF8A80;
+  --f-display:"Manrope", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --f-serif:"Cormorant Garamond", Garamond, "Times New Roman", serif;
+  --f-body:"Manrope", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --r:18px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--night)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+::selection{background:var(--gold);color:var(--gold-ink)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+.section{padding-block:clamp(64px,9vw,120px)}
+.alt{background:var(--deep)}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);font-weight:800;line-height:1.05;letter-spacing:-.035em}
+h3{font-size:1.2rem;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.it{font-family:var(--f-serif);font-style:italic;font-weight:600;letter-spacing:-.01em;color:var(--gold)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:58ch}
+.head{display:grid;gap:16px;margin-bottom:clamp(36px,5vw,56px);max-width:780px}
+.center{text-align:center;margin-inline:auto;justify-items:center}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 1rem/1 var(--f-body);padding:18px 26px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#B8913E);color:var(--gold-ink);box-shadow:0 14px 34px -14px rgba(212,175,90,.7)}
+.btn-gold:hover{box-shadow:0 18px 40px -12px rgba(212,175,90,.85)}
+.btn-line{border-color:rgba(244,241,232,.28);color:var(--ink);background:rgba(255,255,255,.02)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold-2)}
+.btn-wa{background:var(--wa);color:#062B14}
+.arrow{transition:transform .2s ease}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(7,15,31,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.top .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}
+.logo-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font:italic 600 1.2rem/1 var(--f-serif)}
+.logo-text{font-weight:800;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
+.logo-text small{display:block;font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.nav{display:flex;gap:28px;margin-left:auto;font-weight:600;font-size:.95rem}
+.nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.top .btn{padding:12px 20px;font-size:.92rem}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:12px;border:1px solid var(--line-soft);background:transparent;color:var(--ink);cursor:pointer;place-items:center}
+.burger svg{display:block}
+.mnav{display:none}
+.mnav.open{display:grid;position:absolute;top:100%;left:0;right:0;background:rgba(7,15,31,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-left,0px)) 18px max(16px,env(safe-area-inset-right,0px));gap:2px;animation:drop .3s ease}
+.mnav a{display:flex;justify-content:space-between;align-items:center;padding:15px 8px;text-decoration:none;font-weight:600;font-size:1.05rem;border-bottom:1px solid rgba(169,180,203,.14)}
+.mnav a::after{content:"›";color:var(--gold)}
+.mnav .btn{margin-top:12px;border-bottom:0}
+.mnav .btn::after{content:""}
+@media (max-width:920px){.nav{display:none}.burger{display:grid}.top .btn-gold{display:none}}
+@media (max-width:440px){.top .btn{display:none}}
+.lang{display:flex;gap:2px;align-items:center;border:1px solid var(--line-soft);border-radius:999px;padding:3px;flex:none}
+.lang a{text-decoration:none;font-weight:700;font-size:.76rem;letter-spacing:.06em;padding:6px 10px;border-radius:999px;color:var(--muted);transition:color .15s}
+.lang a.on{background:var(--gold);color:var(--gold-ink)}
+.lang a:hover:not(.on){color:var(--ink)}
+@media (max-width:920px){.lang{margin-left:auto}.burger{margin-left:0}}
+@media (max-width:360px){.lang a{padding:6px 8px}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:
+  radial-gradient(1100px 520px at 88% 30%, rgba(212,175,90,.2), transparent 60%),
+  radial-gradient(900px 600px at 70% 90%, rgba(23,80,127,.4), transparent 65%),
+  radial-gradient(700px 420px at 6% 8%, rgba(134,200,242,.08), transparent 60%),
+  linear-gradient(115deg,#060D1B 0%,#0A1830 55%,#0D2238 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;align-items:center;padding-block:clamp(56px,8vw,110px) clamp(96px,10vw,150px);min-height:min(82vh,840px)}
+.hero-copy{max-width:620px}
+.hero-copy{display:grid;gap:26px;min-width:0}
+.pin{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(16,31,64,.6);font-size:.88rem;font-weight:600;width:fit-content;max-width:100%}
+.pin b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--gold-ink)}
+.pin span{color:var(--muted);font-weight:500}
+.pin-sep{width:1px;height:18px;background:rgba(169,180,203,.3)}
+h1{font-family:var(--f-serif);font-size:clamp(3rem,7.4vw,5.9rem);font-weight:600;line-height:.98;letter-spacing:-.015em}
+h1 .rot-wrap{display:block;min-height:1.1em}
+h1 .rot{display:inline-block;font-family:var(--f-serif);font-style:italic;font-weight:600;letter-spacing:-.02em;font-size:1.12em;line-height:1;padding-right:.08em;
+  background:linear-gradient(100deg,var(--gold) 0%,var(--gold-2) 25%,var(--gold) 50%,#B8913E 75%,var(--gold) 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;transition:transform .35s ease, opacity .35s ease}
+h1 .rot.out{transform:translateY(-.25em);opacity:0}
+h1 .rot.in{transform:translateY(.25em);opacity:0}
+@keyframes shine{to{background-position:-220% 0}}
+.hero .lead{color:#E1E7F1}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.92rem;color:var(--muted);padding-top:6px}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+.trust b{color:var(--gold-2);font-weight:700}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}.rise.d4{animation-delay:.32s}
+@keyframes rise{from{transform:translateY(22px)}to{transform:none}}
+
+/* Hero scene: full-bleed over the whole section */
+.scene{position:absolute;inset:0;z-index:0;overflow:hidden}
+.scene img{position:absolute;top:0;right:clamp(-110px,-7vw,-48px);height:100%;width:auto;min-width:62%;max-width:none;object-fit:cover;object-position:100% 50%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);mask-image:linear-gradient(90deg,transparent 0,#000 26%)}
+.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,var(--night) 30%,rgba(7,15,31,.94) 45%,rgba(7,15,31,.55) 58%,rgba(7,15,31,0) 72%),linear-gradient(180deg,rgba(7,15,31,.5),transparent 18% 80%,rgba(7,15,31,.55))}
+.feed{position:absolute;z-index:3;top:16%;right:26%;display:grid;gap:12px;width:300px}
+.note{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:rgba(14,26,52,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(169,180,203,.26);border-radius:16px;padding:13px 15px;box-shadow:0 20px 44px -18px rgba(0,0,0,.75);font-size:.85rem;line-height:1.4;color:var(--ink)}
+.note i{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-style:normal;flex:none}
+.note .w{background:#25D366}
+.note .m{background:#4A90E2}
+.note .g{background:linear-gradient(45deg,#F9CE34,#EE2A7B 55%,#6228D7)}
+.note .nt{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.note .nt em{font-style:normal;font-size:.8rem;font-weight:700;color:var(--ink)}
+.note .nt time{font-size:.68rem;color:var(--muted);white-space:nowrap}
+.note p{color:#C9D2E3;font-size:.8rem;margin-top:2px}
+.note.new{animation:drop .55s cubic-bezier(.2,.8,.2,1)}
+.note.o1{opacity:.75}
+.note.o2{opacity:.5}
+@keyframes drop{from{transform:translateY(-14px) scale(.96);opacity:0}to{opacity:1}}
+@media (max-width:1150px) and (min-width:981px){.feed{display:none}}
+@media (max-width:980px){.feed{top:6%;right:auto;left:12px;width:min(265px,70vw)}
+  .note{padding:11px 13px;font-size:.8rem}
+  .note i{width:32px;height:32px;border-radius:9px}
+  .note .nt time{font-size:.62rem}
+  .note p{font-size:.74rem}}
+@keyframes float{50%{transform:translateY(-10px)}}
+@media (max-width:980px){
+  .hero{display:flex;flex-direction:column}
+  .scene{position:relative;inset:auto;order:2;margin-top:-10px}
+  .scene img{position:relative;top:auto;right:auto;height:auto;width:100%;min-width:0;object-fit:contain;object-position:center;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 6%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 6%,#000 86%,transparent)}
+  .scene::after{background:linear-gradient(100deg,rgba(7,15,31,.96) 0%,rgba(7,15,31,.9) 30%,rgba(7,15,31,.5) 46%,rgba(7,15,31,0) 62%)}
+  .hero .wrap{min-height:0;padding-block:clamp(40px,7vw,70px) 10px}
+  .hero-copy{max-width:none}
+}
+
+/* Hero stats */
+.stats{display:grid;grid-template-columns:repeat(4,max-content);gap:16px 0;padding-top:10px}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center;padding:0 24px;border-left:1px solid rgba(169,180,203,.22)}
+.stat:first-child{border-left:0;padding-left:0}
+@media (max-width:1240px){
+  .stats{grid-template-columns:repeat(2,max-content)}
+  .stat{border-left:0;padding:0}
+  .stat:nth-child(even){border-left:1px solid rgba(169,180,203,.22);padding-left:20px;margin-left:20px}
+}
+.stat .ic{grid-row:span 2;color:var(--gold)}
+.stat b{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+.stat b em{font-style:normal;color:var(--gold-2)}
+.stat span{font-size:.78rem;color:var(--muted)}
+@media (max-width:700px){.stat{padding:0 16px}}
+
+/* Sector bar */
+.sectors{padding-block:0 30px;background:transparent;margin-top:clamp(-64px,-4vw,-30px);position:relative;z-index:5}
+.sectors .wrap{display:grid;grid-auto-flow:column;grid-auto-columns:max-content;align-items:center;gap:14px;overflow-x:auto;padding-block:14px;border:1px solid rgba(169,180,203,.22);border-radius:22px;background:rgba(8,16,32,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -30px rgba(0,0,0,.8);scrollbar-width:none;padding-inline:max(18px,env(safe-area-inset-left,0px)) max(18px,env(safe-area-inset-right,0px))}
+.sectors .wrap::-webkit-scrollbar{display:none}
+.sec-lead{display:flex;align-items:center;gap:12px;font-weight:700;padding-right:12px;white-space:nowrap}
+.sec-lead span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);color:var(--gold)}
+.sec{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;align-items:center;border:1px solid rgba(169,180,203,.2);border-radius:14px;padding:10px 18px 10px 14px;background:rgba(16,31,64,.5);white-space:nowrap}
+.sec .ic{grid-row:span 2;color:var(--gold)}
+.sec b{font-size:.92rem;font-weight:700}
+.sec span{font-size:.72rem;color:var(--muted)}
+
+/* Marquee */
+.marquee{border-block:1px solid var(--line);background:var(--deep);overflow:hidden;white-space:nowrap}
+.track{display:inline-flex;gap:0;padding-block:20px;animation:slide 38s linear infinite}
+.track span{font-weight:800;font-size:clamp(1rem,2vw,1.35rem);letter-spacing:-.01em;padding:0 22px;color:var(--ink);display:inline-flex;align-items:center;gap:44px}
+.track span::after{content:"✦";color:var(--gold);font-size:.8em}
+.track span:nth-child(3n+2){font:italic 600 clamp(1.2rem,2.3vw,1.6rem)/1 var(--f-serif);color:var(--gold-2)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Pains */
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--r);padding:30px 28px;display:grid;gap:14px;align-content:start;min-width:0;transition:border-color .25s, transform .25s}
+.pain:hover{border-color:var(--line);transform:translateY(-4px)}
+.pain .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(212,175,90,.12);color:var(--gold)}
+.pain p{color:var(--muted)}
+@media (max-width:900px){.pains{grid-template-columns:1fr}}
+
+/* Services */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{position:relative;border-radius:var(--r);padding:34px 30px;display:grid;gap:14px;align-content:start;min-width:0;background:linear-gradient(180deg,rgba(16,31,64,.9),rgba(11,23,48,.9));border:1px solid var(--line-soft)}
+.svc.hl{background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(140deg,var(--gold-2),var(--gold) 40%,rgba(212,175,90,.15) 70%,var(--gold)) border-box;border:1.5px solid transparent}
+.svc .tag{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+.svc.hl .tag{color:var(--gold)}
+.svc h3{font-size:1.5rem;letter-spacing:-.02em}
+.svc p{color:var(--muted)}
+.svc ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:.96rem}
+.svc li{display:flex;gap:12px;align-items:baseline}
+.svc li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);transform:translateY(-2px)}
+.also{margin-top:26px;color:var(--muted);font-size:.96rem}
+.also b{color:var(--ink)}
+@media (max-width:900px){.svcs{grid-template-columns:1fr}}
+
+/* Nosy Komba */
+.home{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center}
+.home-copy{display:grid;gap:20px;min-width:0}
+.home-copy p{color:var(--muted)}
+.home-copy p b{color:var(--ink);font-weight:700}
+.globe{position:relative;aspect-ratio:1;max-width:460px;width:100%;margin-inline:auto;border-radius:50%;border:1px solid var(--line);background:radial-gradient(circle at 35% 30%, rgba(134,200,242,.18), transparent 60%),radial-gradient(circle,rgba(16,31,64,.9),rgba(7,15,31,1) 70%);display:grid;place-items:center;overflow:hidden}
+.globe::before,.globe::after{content:"";position:absolute;inset:12%;border-radius:50%;border:1px dashed rgba(212,175,90,.22)}
+.globe::after{inset:28%;border-style:solid;border-color:rgba(134,200,242,.16)}
+.globe .core{position:relative;z-index:1;text-align:center;display:grid;gap:6px;padding:20px}
+.globe .core strong{font:italic 600 clamp(2rem,4.4vw,3rem)/1 var(--f-serif);color:var(--gold-2)}
+.globe .core span{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.globe .ping{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(212,175,90,.6);animation:ping 2.4s ease-out infinite;z-index:1;transform:translateY(-78px)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(212,175,90,.55)}100%{box-shadow:0 0 0 34px rgba(212,175,90,0)}}
+.places{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.places span{border:1px solid var(--line-soft);border-radius:999px;padding:8px 15px;font-weight:600;font-size:.92rem}
+.places span.here{border-color:var(--gold);color:var(--gold-2)}
+@media (max-width:900px){.home{grid-template-columns:1fr}.globe{max-width:340px}}
+
+/* About (Qui sommes-nous) */
+.about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4vw,60px);align-items:start}
+.about-copy{display:grid;gap:18px}
+.about-copy p{color:var(--muted)}
+.about-copy p b{color:var(--ink);font-weight:700}
+.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;padding-block:6px}
+.about-feats span{display:flex;gap:13px;align-items:center;font-size:.95rem;font-weight:600;line-height:1.3}
+.about-feats i{color:var(--gold);display:grid;flex:none}
+.about-side{display:grid;min-width:0}
+.about-photo{display:block;width:100%;max-width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:0 44px 90px -40px rgba(0,0,0,.85),0 0 60px -24px rgba(212,175,90,.3)}
+.map-card{margin-top:16px;display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:center;background:linear-gradient(160deg,#0D1C38,#0A1426);border:1px solid var(--line);border-radius:20px;padding:16px 20px}
+.map-card img{display:block;width:100%;max-width:100%;height:auto;border-radius:12px}
+.map-card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.88rem;font-weight:600}
+.map-card li{display:flex;gap:10px;align-items:center}
+.map-card li::before{content:"";flex:none;width:9px;height:9px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--gold)}
+.pays{margin-top:28px;display:grid;grid-auto-flow:column;grid-auto-columns:max-content;align-items:center;gap:14px;background:linear-gradient(135deg,#FFF9EE,#EFE3C8);border-radius:999px;padding:12px 22px;overflow-x:auto;scrollbar-width:none;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.pays::-webkit-scrollbar{display:none}
+.plead{font:italic 600 1.08rem/1.25 var(--f-serif);color:#6E5620;white-space:nowrap;padding-right:8px}
+.plead i{font-style:normal}
+.pays img{display:block;height:80px;width:170px;object-fit:cover;border-radius:14px;transition:transform .3s ease}
+.pays img:hover{transform:translateY(-4px)}
+@media (max-width:980px){.about-grid{grid-template-columns:1fr}.pays{border-radius:26px}}
+@media (max-width:520px){.map-card{grid-template-columns:1fr}.map-card ul{grid-template-columns:1fr 1fr;display:grid}}
+
+/* Tourism */
+#tourisme{position:relative;overflow:hidden}
+.tour{display:grid;grid-template-columns:1fr minmax(220px,320px) 1.05fr;gap:clamp(20px,3vw,40px);align-items:center}
+.tour-shot{position:relative;align-self:stretch;min-width:0}
+.tour-shot img{position:absolute;inset:-40px 0;height:calc(100% + 80px);width:100%;object-fit:cover;border-radius:0;display:block;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+.tfeat{margin-left:clamp(-70px,-4vw,-20px);position:relative;z-index:1}
+@media (max-width:1080px){.tour{grid-template-columns:1fr}.tour-shot{display:none}.tfeat{margin-left:0}}
+.tour-copy{display:grid;gap:20px;align-content:center}
+.who{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.who span{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(169,180,203,.35);border-radius:999px;padding:11px 18px;font-weight:600;font-size:.94rem;color:var(--ink);background:rgba(7,15,31,.5)}
+.who svg{color:var(--gold);flex:none}
+.quote-line{margin-top:14px;font:italic 600 clamp(1.3rem,2.2vw,1.7rem)/1.3 var(--f-serif);color:var(--gold-2);max-width:26ch}
+.quote-line::after{content:"";display:block;width:64px;height:2px;background:var(--gold);margin-top:14px}
+.tfeat{display:grid;gap:14px}
+.tfeat a{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;text-decoration:none;color:var(--ink);background:rgba(13,26,52,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(169,180,203,.24);border-radius:18px;padding:18px 22px;transition:border-color .2s, transform .2s}
+.tfeat a:hover{border-color:var(--gold);transform:translateX(4px)}
+.tico{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink);flex:none}
+.tfeat b{display:block;font-size:1.05rem;font-weight:700;margin-bottom:3px}
+.tfeat p{color:var(--muted);font-size:.9rem}
+.tchev{color:var(--muted);font-size:1.1rem}
+
+/* Pricing */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.price{background:var(--card);border:1px solid var(--line-soft);border-radius:22px;padding:34px 28px;display:flex;flex-direction:column;gap:16px;min-width:0;position:relative}
+.price.star{background:linear-gradient(180deg,#14284F,var(--card)) padding-box,linear-gradient(150deg,var(--gold-2),var(--gold) 45%,rgba(212,175,90,.2) 75%,var(--gold)) border-box;border:1.5px solid transparent;box-shadow:0 30px 70px -35px rgba(212,175,90,.45)}
+.flag{position:absolute;top:-14px;left:28px;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink);font-weight:800;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.price h3{font-size:1.35rem}
+.price .for{color:var(--muted);font-size:.95rem;margin-top:-8px}
+.amount{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.amount small{font-size:.88rem;color:var(--muted)}
+.amount b{font-family:var(--f-display);font-size:clamp(2.6rem,4vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.star .amount b{color:var(--gold-2)}
+.price ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:.96rem;flex:1}
+.price li{display:flex;gap:12px}
+.price li::before{content:"✓";color:var(--gold);font-weight:800}
+.price .btn{width:100%}
+.social{margin-top:18px;display:grid;grid-template-columns:auto 1fr auto;gap:18px 28px;align-items:center;background:var(--card);border:1px solid var(--line-soft);border-radius:22px;padding:26px 28px}
+.social p{color:var(--muted)}
+.social .amount b{font-size:2.2rem}
+.reassure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:28px;font-size:.92rem;color:var(--muted)}
+.reassure span::before{content:"✓ ";color:var(--gold);font-weight:800}
+.small-print{margin-top:14px;text-align:center;font-size:.84rem;color:var(--muted)}
+@media (max-width:900px){.prices{grid-template-columns:1fr}.social{grid-template-columns:1fr}.price.star{order:-1}}
+
+/* Pricing banner style */
+#tarifs{background:radial-gradient(1000px 420px at 88% -5%, rgba(212,175,90,.14), transparent 60%),radial-gradient(700px 400px at 0% 100%, rgba(23,80,127,.35), transparent 60%),var(--deep)}
+.tarifs-head{display:grid;grid-template-columns:1fr auto;gap:24px 40px;align-items:center;margin-bottom:clamp(36px,5vw,56px)}
+.assure{display:grid;gap:16px}
+.assure span{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;align-items:center}
+.assure .ic{grid-row:span 2;color:var(--gold)}
+.assure b{font-size:.95rem;font-weight:700}
+.assure small{font-size:.78rem;color:var(--muted)}
+@media (max-width:900px){.tarifs-head{grid-template-columns:1fr}.assure{grid-auto-flow:column;grid-auto-columns:1fr;gap:10px}}
+@media (max-width:640px){.assure{grid-auto-flow:row}}
+.prices{overflow:visible}
+.price{overflow:visible}
+.pbadge{width:fit-content;border:1px solid rgba(134,200,242,.5);color:#BFE0F6;font-weight:800;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:6px 13px;border-radius:999px}
+.pmock{display:block;width:100%;max-width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 48px -22px rgba(0,0,0,.85);margin:6px 0 4px;transition:transform .35s ease, box-shadow .35s ease}
+.price:hover .pmock{transform:translateY(-5px);box-shadow:0 30px 56px -22px rgba(0,0,0,.9),0 0 40px -14px rgba(212,175,90,.4)}
+.hand{position:absolute;top:-52px;right:4px;font:italic 600 1.05rem/1.2 var(--f-serif);color:var(--gold-2);transform:rotate(-3deg);max-width:220px;text-align:right}
+.hand::after{content:"⤵";display:inline-block;margin-left:6px;transform:rotate(-30deg)}
+.price li::before{content:"✓";flex:none;width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-size:.68rem;font-weight:800;transform:translateY(2px)}
+.price li.plus{font:italic 600 1rem/1.4 var(--f-serif);color:var(--gold-2)}
+.price li.plus::before{content:"+";background:transparent;border:1.5px solid var(--gold);color:var(--gold);font-size:.85rem}
+.scollage{width:118px;height:118px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 12px 28px -12px rgba(18,36,65,.4)}
+.sprice{border:1.5px solid rgba(18,36,65,.35);border-radius:999px;padding:13px 20px;font-weight:700;color:#122441;text-decoration:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.sprice b{font-size:1.25rem}
+.sprice:hover{border-color:#122441}
+@media (max-width:900px){.hand{display:none}}
+
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{padding:26px 24px;border-radius:var(--r);border:1px solid var(--line-soft);background:rgba(16,31,64,.5);display:grid;gap:10px;align-content:start;min-width:0}
+.step::before{counter-increment:s;content:"0" counter(s);font:italic 600 2.4rem/1 var(--f-serif);color:var(--gold)}
+.step p{color:var(--muted);font-size:.96rem}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* Team photo */
+.team{position:relative;max-width:440px;width:100%;margin-inline:auto;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 0 0 6px rgba(212,175,90,.07),0 40px 80px -36px rgba(0,0,0,.8);transform:rotate(-1.2deg)}
+.team img{display:block;width:100%;height:auto;max-width:100%}
+.team figcaption{position:absolute;left:14px;bottom:14px;right:14px;display:flex;align-items:center;gap:12px;background:rgba(7,15,31,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:.92rem;line-height:1.35}
+.team figcaption b{display:block;font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:1.25rem;color:var(--gold-2)}
+.team figcaption span{color:var(--muted);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* Work */
+.wfeat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.wf.cel-card{grid-column:span 2}
+@media (max-width:480px){.wf.cel-card{grid-column:auto}}
+.wf{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-soft);background:#FBF7EE;display:grid;min-width:0;transition:transform .25s, border-color .25s, box-shadow .25s}
+.wf:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 26px 54px -28px rgba(212,175,90,.4)}
+.wf .screen2{position:relative;background:#0D1C38;padding:26px 0 0}
+.wf .screen2::before{content:"";position:absolute;top:10px;left:14px;width:36px;height:7px;border-radius:999px;background:rgba(212,175,90,.55);box-shadow:14px 0 0 -1px rgba(134,200,242,.4),28px 0 0 -2px rgba(244,241,232,.25)}
+.wf img{display:block;width:100%;height:170px;object-fit:cover;object-position:center top;max-width:100%;filter:saturate(1.04) contrast(1.03)}
+.cel-hero{position:relative;height:170px;display:grid;align-content:center;gap:8px;padding:18px 22px;overflow:hidden;background:
+  radial-gradient(circle at 82% 22%, #F6DC8E 0 20px, transparent 21px),
+  linear-gradient(180deg,#8FC6EE 0%,#BFE0F6 42%,#2F85BF 43%,#17507F 100%)}
+.cel-hero::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-26px;height:52px;background:#EBD9B4;border-radius:50% 50% 0 0}
+.cel-hero small{font-size:.66rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#0A1428}
+.cel-hero strong{font:italic 600 1.7rem/1.05 var(--f-serif);color:#FFFFFF;text-shadow:0 2px 14px rgba(10,20,40,.45)}
+.cel-chips{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
+.cel-chips i{font-style:normal;font-size:.68rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.88);color:#17507F}
+.cel-hero.tile-cocoa{background:radial-gradient(circle at 80% 20%, rgba(244,222,159,.5) 0 26%, transparent 55%),linear-gradient(160deg,#5C3A21 0%,#3B2414 55%,#241307 100%)}
+.cel-hero.tile-cocoa::after{background:#D4AF5A;opacity:.85}
+.cel-hero.tile-cocoa strong{color:#F4DE9F}
+.cel-hero.tile-cocoa small{color:#E8D2A8}
+.cel-hero.tile-cocoa .cel-chips i{background:rgba(244,222,159,.92);color:#3B2414}
+.cel-hero.tile-art{background:radial-gradient(circle at 20% 85%, rgba(212,175,90,.5) 0 18%, transparent 45%),linear-gradient(150deg,#1B2C5E 0%,#30418F 50%,#0F1F3D 100%)}
+.cel-hero.tile-art::after{background:var(--sky);opacity:.8}
+.cel-hero.tile-art strong{color:#FFFFFF}
+.cel-hero.tile-art small{color:#BFE0F6}
+.cel-hero.tile-art .cel-chips i{background:rgba(191,224,246,.92);color:#1B2C5E}
+.wf .cap{display:grid;gap:3px;padding:14px 16px 16px;background:var(--card)}
+.wf .cap span{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.wf .cap b{font-weight:700;font-size:.98rem;line-height:1.3}
+.wf .cap i{font-style:normal;font-size:.84rem;color:var(--muted)}
+@media (max-width:980px){.wfeat{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.wfeat{grid-template-columns:1fr}}
+.work{display:flex;flex-wrap:wrap;gap:10px}
+.work div{display:flex;align-items:baseline;gap:10px;padding:12px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line-soft)}
+.work b{font-weight:600;font-size:.94rem}
+.work span{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.refs{margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:18px 32px;align-items:center;padding:28px;border-radius:22px;border:1px dashed var(--line)}
+.refs p{color:var(--muted)}
+@media (max-width:760px){.refs{grid-template-columns:1fr}}
+
+/* Showcase (réalisations) */
+.showcase{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(24px,4vw,56px);align-items:center;background:linear-gradient(180deg,#14284F,var(--card));border:1.5px solid transparent;background:linear-gradient(180deg,#14284F,var(--card)) padding-box,linear-gradient(150deg,var(--gold-2),var(--gold) 45%,rgba(212,175,90,.15) 75%,var(--gold)) border-box;border-radius:26px;padding:clamp(20px,3.4vw,40px);margin-bottom:18px}
+.show-img{min-width:0}
+.show-img{min-width:0}
+.show-img img{display:block;width:100%;height:auto;max-width:100%;border-radius:16px;transition:transform .4s ease;box-shadow:0 36px 70px -32px rgba(0,0,0,.85),0 0 70px -20px rgba(212,175,90,.25)}
+.real-celestia:hover .show-img img{transform:translateY(-6px)}
+.show-copy{display:grid;gap:14px;min-width:0;align-content:center}
+.own-flag{width:fit-content;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink);font-weight:800;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.show-copy h3{font-family:var(--f-display);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;letter-spacing:-.03em}
+.show-sub{font:italic 600 1.15rem/1.3 var(--f-serif);color:var(--gold-2)}
+.show-copy > p{color:var(--muted)}
+.feats{list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;font-size:.95rem}
+.feats li{display:flex;gap:10px;align-items:baseline}
+.feats li::before{content:"✓";color:var(--gold);font-weight:800}
+.show-copy .btn{width:fit-content;margin-top:6px}
+.show-duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px}
+.show-card{background:var(--card);border:1px solid var(--line-soft);border-radius:22px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;transition:border-color .25s, transform .25s}
+.show-card:hover{border-color:var(--line);transform:translateY(-4px)}
+.persp{min-width:0}
+.persp img{display:block;width:100%;height:auto;max-width:100%;border-radius:12px;transition:transform .4s ease;box-shadow:0 26px 50px -24px rgba(0,0,0,.85)}
+.mir:hover .persp img{transform:translateY(-5px)}
+.show-card .pad{padding:24px 26px 26px;display:grid;gap:10px;align-content:start}
+.show-card h3{font-size:1.4rem;letter-spacing:-.02em}
+.show-card .pad > p{color:var(--muted);font-size:.96rem}
+.mini-strip{display:grid;grid-auto-flow:column;grid-auto-columns:156px;gap:16px;overflow-x:auto;padding:4px 2px 16px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.mini{display:grid;gap:8px;align-content:start}
+.mini img{display:block;width:100%;height:auto;max-width:100%;border-radius:12px;border:1px solid var(--line-soft);transition:transform .3s ease, box-shadow .3s ease}
+.mini:hover img{transform:translateY(-5px) scale(1.04);box-shadow:0 18px 34px -16px rgba(0,0,0,.8),0 0 0 1px var(--gold)}
+.mini b{font-size:.86rem;line-height:1.25}
+.mini span{font-size:.72rem;color:var(--muted);line-height:1.3}
+@media (max-width:900px){.showcase{grid-template-columns:1fr}.show-duo{grid-template-columns:1fr}}
+
+/* Réalisations banner layout */
+.real-top{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,64px);align-items:center;margin-bottom:clamp(32px,5vw,52px)}
+.real-head{display:grid;gap:18px}
+.real-head .btn{width:fit-content}
+.real-mini{display:flex;gap:10px 26px;flex-wrap:wrap;font-size:.86rem;color:var(--muted);padding-top:4px}
+.real-mini span{display:inline-flex;align-items:center;gap:9px}
+.real-mini svg{color:var(--gold);flex:none}
+.real-celestia{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(18px,2.5vw,32px);align-items:center}
+.side-info{display:grid;gap:10px;align-content:center;min-width:0}
+.side-info h3{font-size:clamp(1.4rem,2.2vw,1.8rem);letter-spacing:-.02em}
+.side-desc{color:var(--muted);font-size:.95rem}
+.feats.col{grid-template-columns:1fr}
+.duo-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px}
+.mir{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(14px,2vw,24px);align-items:center;background:var(--card);border:1px solid var(--line-soft);border-radius:22px;padding:clamp(18px,2.4vw,26px);transition:border-color .25s}
+.mir:hover{border-color:var(--line)}
+.mir.flip{grid-template-columns:1.22fr .78fr}
+.mir .persp{padding:0;background:none}
+@media (max-width:1050px){.duo-row{grid-template-columns:1fr}}
+@media (max-width:980px){.real-top{grid-template-columns:1fr}.real-celestia{grid-template-columns:1fr}}
+@media (max-width:640px){.mir,.mir.flip{grid-template-columns:1fr}.mir.flip .persp{order:-1}}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px;margin-inline:auto}
+.faq details{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:0 22px;transition:border-color .2s}
+.faq details[open]{border-color:var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:700;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--gold);font-size:1.4rem;line-height:1;font-weight:500;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--muted)}
+
+/* Celestia full-width showcase */
+.real-head2{display:grid;grid-template-columns:1fr auto;gap:20px 48px;align-items:end;margin-bottom:30px}
+@media (max-width:900px){.real-head2{grid-template-columns:1fr}}
+.cel-show{position:relative;margin-bottom:34px}
+.cel-show > img{display:block;width:100%;max-width:100%;height:auto;border-radius:26px;border:1px solid var(--line);box-shadow:0 60px 110px -44px rgba(0,0,0,.9),0 0 100px -30px rgba(212,175,90,.35)}
+.cel-info{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);width:min(400px,42%);background:rgba(8,16,32,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:20px;padding:clamp(18px,2.4vw,28px);display:grid;gap:10px;box-shadow:0 30px 60px -24px rgba(0,0,0,.7)}
+.cel-info h3{font-size:clamp(1.3rem,2vw,1.7rem);letter-spacing:-.02em}
+.cel-info .feats{grid-template-columns:1fr 1fr;font-size:.9rem;gap:8px 14px}
+.cel-info .btn{width:fit-content;margin-top:8px;padding:14px 20px;font-size:.95rem}
+@media (max-width:860px){.cel-info{position:static;width:auto;margin-top:14px;background:var(--card)}.cel-info .feats{grid-template-columns:1fr}}
+
+/* FAQ banner style */
+#faq{position:relative;overflow:hidden}
+.faq-bg{position:absolute;top:0;bottom:0;z-index:0;pointer-events:none;opacity:.55}
+.faq-bg img{height:100%;width:auto;object-fit:cover;display:block}
+.faq-bg.l{left:0}
+.faq-bg.l img{-webkit-mask-image:linear-gradient(90deg,#000 30%,transparent);mask-image:linear-gradient(90deg,#000 30%,transparent)}
+.faq-bg.r{right:0}
+.faq-bg.r img{-webkit-mask-image:linear-gradient(270deg,#000 30%,transparent);mask-image:linear-gradient(270deg,#000 30%,transparent)}
+#faq .wrap{position:relative;z-index:1}
+.faq details{border-radius:16px;background:rgba(16,30,58,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.faq summary{align-items:center;gap:16px}
+.faq summary b{flex:1;font-weight:700}
+.fic{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;flex:none;background:rgba(212,175,90,.07)}
+.faq details p{padding-left:62px}
+@media (max-width:640px){.faq-bg{display:none}.faq details p{padding-left:0}.fic{width:38px;height:38px}}
+
+/* Contact */
+.contact{position:relative;overflow:hidden;background:radial-gradient(800px 500px at 0% 0%, rgba(212,175,90,.12), transparent 60%),radial-gradient(700px 500px at 100% 100%, rgba(134,200,242,.1), transparent 60%),var(--deep)}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,5vw,72px);align-items:start}
+.contact-aside{display:grid;gap:20px;min-width:0}
+.direct{display:grid;gap:10px;margin-top:8px}
+.direct a,.direct div{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:20px 22px;border-radius:16px;background:rgba(19,38,77,.55);border:1px solid var(--line-soft);text-decoration:none;overflow-wrap:anywhere;transition:border-color .2s, transform .2s}
+.direct a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.direct small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.direct .val{font-weight:700;font-size:clamp(1rem,2vw,1.2rem);letter-spacing:.01em}
+.direct .go{color:var(--ink);font-size:1.2rem}
+.dic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none}
+.dic.wa{background:var(--wa);color:#fff}
+.dic.ml{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink)}
+.progress{display:grid;gap:12px}
+.ptop{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ptop b{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+.ptop span{font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.pbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pbar i{display:block;height:6px;border-radius:999px;background:rgba(169,180,203,.22);transition:background .4s ease, box-shadow .4s ease}
+.pbar i.on{background:linear-gradient(90deg,var(--gold-2),var(--gold));box-shadow:0 0 12px rgba(212,175,90,.5)}
+#form-body{display:grid;gap:24px}
+.fstep{display:grid;gap:22px;animation:steprise .35s ease}
+@keyframes steprise{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.fnav{display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line-soft);padding-top:20px}
+.fnav .grow{flex:1;font-size:.84rem;color:var(--muted);min-width:140px}
+.btn-back{padding:14px 20px;font-size:.95rem}
+form{background:linear-gradient(180deg,#13264D,#0E1C3A) padding-box,linear-gradient(150deg,var(--gold-2),var(--gold) 40%,rgba(212,175,90,.15) 70%,var(--gold)) border-box;border:1.5px solid transparent;border-radius:26px;padding:clamp(22px,4vw,38px);display:grid;gap:22px;min-width:0;box-shadow:0 46px 90px -40px rgba(0,0,0,.75),0 0 80px -30px rgba(212,175,90,.4)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.field{display:grid;gap:8px;min-width:0}
+label,.legend{font-weight:700;font-size:.92rem}
+.req{color:var(--gold)}
+.opt{font-weight:500;color:var(--muted);font-size:.84rem}
+input[type=text],input[type=email],input[type=tel],input[type=url],textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--night);border:1.5px solid var(--line-soft);border-radius:12px;padding:14px 15px}
+input::placeholder,textarea::placeholder{color:#8B97AE}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips label{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.92rem;padding:12px 18px;border-radius:999px;border:1.5px solid var(--line-soft);cursor:pointer;background:rgba(7,15,31,.55);user-select:none;transition:border-color .15s, box-shadow .15s, background .15s}
+.chips label svg{color:var(--muted);flex:none;transition:color .15s}
+.chips label:hover{border-color:var(--gold)}
+.chips input:checked + label{border-color:var(--gold);background:rgba(212,175,90,.1);color:var(--ink);box-shadow:0 0 0 1px var(--gold),0 0 18px -4px rgba(212,175,90,.55)}
+.chips input:checked + label svg{color:var(--gold)}
+.chips input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.err{color:var(--danger);font-size:.88rem;font-weight:600}
+.form-foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.form-foot p{font-size:.86rem;color:var(--muted)}
+.done{display:grid;gap:18px}
+.done h3{font-size:1.8rem;letter-spacing:-.03em}
+.summary{background:var(--night);border:1px solid var(--line-soft);border-radius:12px;padding:16px;font-size:.9rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;color:#D6DDEA}
+.done-actions{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}}
+
+/* Light pastel sections */
+.lite{--card:#FFFFFF;--ink:#122441;--muted:#4E617F;--line:rgba(168,132,47,.42);--line-soft:#D3E2EF;--gold:#A8842F;--gold-2:#8F6F2A;--night:#E2EEF8;background:#EDF5FB;color:var(--ink)}
+.marquee.lite{background:#E4EFF9}
+.lite .btn-line{border-color:rgba(18,36,65,.3);color:var(--ink);background:rgba(255,255,255,.55)}
+.lite .btn-line:hover{border-color:#A8842F;color:#8F6F2A}
+.lite .svc{background:#FFFFFF;box-shadow:0 18px 40px -28px rgba(18,36,65,.25)}
+.lite .svc .tag{color:#2272B5}
+.lite .step{background:#FFFFFF;box-shadow:0 14px 34px -26px rgba(18,36,65,.25)}
+.lite .wf{background:#FFFFFF;box-shadow:0 16px 38px -28px rgba(18,36,65,.28)}
+.lite .faq details{box-shadow:0 10px 26px -22px rgba(18,36,65,.25)}
+.lite .price{box-shadow:0 18px 44px -32px rgba(18,36,65,.3)}
+.lite .price.star{--ink:#F4F1E8;--muted:#C6CFDF;--gold:#D4AF5A;--gold-2:#F4DE9F;--gold-ink:#0A1428;--line-soft:rgba(169,180,203,.26);color:var(--ink);box-shadow:0 30px 70px -32px rgba(18,36,65,.5)}
+.lite ::selection{background:#A8842F;color:#fff}
+
+/* Ice-blue accents */
+.pin{background:rgba(134,200,242,.1);border-color:rgba(134,200,242,.38)}
+.pin b{background:var(--sky);color:#0A1428}
+.social{background:linear-gradient(135deg,#EAF4FC,#D5E9F8);border:none;color:#122441}
+.social h3{color:#122441}
+.social p{color:#49617F}
+.social .amount b,.social .amount small{color:#122441}
+.social .amount small{color:#49617F}
+.social .btn-line{border-color:rgba(18,36,65,.32);color:#122441;background:transparent}
+.social .btn-line:hover{border-color:#122441;color:#122441}
+.who span{border-color:rgba(134,200,242,.4);color:#BFE0F6}
+.step::before{color:var(--sky)}
+
+/* Social pill card */
+.social{margin-top:24px;grid-template-columns:auto 1fr auto;background:linear-gradient(135deg,#FFFFFF,#E9F2FB);border:none;border-radius:999px;padding:16px 22px 16px 16px;box-shadow:0 34px 70px -30px rgba(18,36,65,.6)}
+.scollage{width:104px;height:104px;border:3px solid #fff;box-shadow:0 0 0 2.5px var(--gold),0 16px 34px -14px rgba(18,36,65,.5)}
+.social h3{font-size:1.25rem;letter-spacing:-.015em}
+.social p{font-size:.94rem;max-width:56ch}
+.skicker{display:block;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#9A7A2E;margin-bottom:4px}
+.sprice{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#B8913E);border:none;color:var(--gold-ink);box-shadow:0 16px 34px -14px rgba(212,175,90,.85);transition:transform .2s ease, box-shadow .2s ease}
+.sprice:hover{transform:translateY(-2px);border:none;box-shadow:0 20px 40px -12px rgba(212,175,90,.95)}
+@media (max-width:760px){.social{grid-template-columns:1fr;border-radius:28px;justify-items:center;text-align:center;padding:24px 20px}.social p{margin-inline:auto}}
+
+/* Footer */
+footer{border-top:1px solid var(--line-soft);padding-block:36px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:20px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--gold-2)}
+
+/* Floating actions */
+.fab{position:fixed;right:max(22px, calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:35;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--wa);color:#062B14;box-shadow:0 14px 34px -10px rgba(37,211,102,.6);text-decoration:none}
+.mbar{display:none}
+@media (max-width:760px){
+  .fab{display:none}
+  .mbar{display:grid;grid-template-columns:auto 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:35;padding:10px max(16px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));background:rgba(7,15,31,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  .mbar .btn{padding:15px 18px}
+  body{padding-bottom:78px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23081426' stroke='%23D4AF5A' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23D4AF5A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://monsieurdeveloppeur.com/en/">
+<link rel="alternate" hreflang="fr" href="https://monsieurdeveloppeur.com/">
+<link rel="alternate" hreflang="pl" href="https://monsieurdeveloppeur.com/pl/">
+<link rel="alternate" hreflang="en" href="https://monsieurdeveloppeur.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://monsieurdeveloppeur.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Monsieur Développeur — Digital agency, Nosy Komba">
+<meta property="og:description" content="Modern websites for tourism, hospitality and businesses. Free quote within 48 hours.">
+<meta property="og:url" content="https://monsieurdeveloppeur.com/en/">
+<meta property="og:image" content="https://monsieurdeveloppeur.com/img/feat-celestia.jpg">
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#accueil" aria-label="Monsieur Développeur, home">
+      <span class="logo-mark">M</span>
+      <span class="logo-text">Monsieur Développeur<small>Nosy Komba · Madagascar</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#tourisme">Tourism</a>
+      <a href="#tarifs">Pricing</a>
+      <a href="#realisations">Our work</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang" aria-label="Language"><a href="../index.html" hreflang="fr">FR</a><a href="../pl/index.html" hreflang="pl">PL</a><a href="index.html" class="on" hreflang="en">EN</a></div>
+    <a class="btn btn-gold" href="#devis">Free quote</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="mnav" id="mnav" aria-label="Mobile menu">
+      <a href="#tourisme">Tourism</a>
+      <a href="#tarifs">Pricing</a>
+      <a href="#realisations">Our work</a>
+      <a href="#agence">About us</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-gold" href="#devis">Free quote in 48 h</a>
+    </nav>
+  </div>
+</header>
+
+<main id="accueil">
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom:40px">
+    <div class="scene" aria-hidden="true">
+      <img src="../img/hero-scene.jpg" alt="" fetchpriority="high">
+      <div class="feed" id="feed"></div>
+    </div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="pin rise"><b><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 9.5A2.5 2.5 0 1 0 12 6.5a2.5 2.5 0 0 0 0 5z"/></svg></b>Based in Nosy Komba, Madagascar<i class="pin-sep"></i><span>Clients all over the world</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".55" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>
+        <h1 class="rise d1">A website that<br>brings you<span class="rot-wrap"><span class="rot" id="rot">clients.</span></span></h1>
+        <p class="lead rise d2">Modern, high-performing websites for tourism, hospitality, businesses and passion projects. Your client understands your offer in seconds — and messages you right away.</p>
+        <div class="hero-cta rise d3">
+          <a class="btn btn-gold" href="#devis"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg> Get my quote in 48 h <span class="arrow">→</span></a>
+          <a class="btn btn-line" href="#realisations"><span style="display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;font-size:.6rem">▶</span> See our work</a>
+        </div>
+        <div class="stats rise d4">
+          <div class="stat"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>Since <em>2018</em></b><span>Our experience</span></div>
+          <div class="stat"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Clients in <em>6 countries</em></b><span>All over the world</span></div>
+          <div class="stat"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg></span><b>Websites from <em>€390</em></b><span>Prices stated up front</span></div>
+          <div class="stat"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l-2 6 6-2M14 4l6 6M4.5 14.5 14 5a2.1 2.1 0 0 1 3 0l2 2a2.1 2.1 0 0 1 0 3l-9.5 9.5a2 2 0 0 1-1.4.6H5v-3.1a2 2 0 0 1 .6-1.4z"/></svg></span><b><em>100%</em> custom-made</b><span>Built around your needs</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="sectors" aria-label="Sectors">
+    <div class="wrap">
+      <span class="sec-lead">Websites for<br>every sector <span>→</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="2.5"/><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6z"/></svg></span><b>Tourism</b><span>Tours, travel</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-7h18v7M3 18h18M5 11V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v4M7 11V9h5v2"/></svg></span><b>Hospitality</b><span>Hotels, villas</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.4 11h10.8L21 8H6"/></svg></span><b>E-commerce</b><span>Online shops</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5 0-8-3-8-7 2 0 4 .7 5 2-1-3 0-8 3-11 3 3 4 8 3 11 1-1.3 3-2 5-2 0 4-3 7-8 7z"/></svg></span><b>Well-being</b><span>Coaches, retreats</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><b>Non-profits</b><span>Community projects</span></span>
+      <span class="sec"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 1-5.6 5L4 16.4A2 2 0 0 0 6.8 19l4.9-4.9a4 4 0 0 1 5-5.6L14 11.2 12 9.2z"/></svg></span><b>Services</b><span>Trades, businesses</span></span>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee lite" aria-label="Our clients">
+    <div class="track" aria-hidden="true">
+      <span>Hotels</span><span>Lodges</span><span>Guides</span><span>Boat tours</span><span>Villas</span><span>Travel planners</span><span>Concierge services</span><span>Well-being</span><span>Artisans</span>
+      <span>Hotels</span><span>Lodges</span><span>Guides</span><span>Boat tours</span><span>Villas</span><span>Travel planners</span><span>Concierge services</span><span>Well-being</span><span>Artisans</span>
+    </div>
+  </div>
+
+  <!-- TOURISM -->
+  <section class="section" id="tourisme">
+    <div class="wrap tour">
+      <div class="tour-copy">
+        <span class="eyebrow">Tourism specialists</span>
+        <h2>Your website answers <span class="it">before anyone asks.</span></h2>
+        <p class="lead">Where is it? What does it look like? How much does it cost? How do I book? Every tourism website we build is designed around these four questions.</p>
+        <div class="who">
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9.5V20h14V9.5M10 20v-6h4v6"/></svg>Hotels &amp; lodges</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13.5"/></svg>Guides</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18l-2-4 8-2 8 2-2 4M12 12V4m0 0 5 6M12 4 7 10"/></svg>Tours &amp; activities</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V10M12 10C12 6 9 3 5 3c0 4 3 7 7 7zm0 0c0-4 3-7 7-7 0 4-3 7-7 7z"/></svg>Villa rentals</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 10l1.5-1.5L10 10l4-4-8.5-3L7 1.5l10.5 3L21 1l2 2-3.5 3.5 3 10.5-1.5 1.5-3-7.5-4 4 1.5 5.5L14 22z" transform="scale(.9) translate(1,1)"/></svg>Travel planners</span>
+        </div>
+        <p class="quote-line">“Fewer questions in your inbox. More bookings.”</p>
+      </div>
+      <div class="tour-shot" aria-hidden="true"><img src="../img/tour-bg.jpg" alt="" loading="lazy"></div>
+      <div class="tfeat">
+        <a href="#devis"><span class="tico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span><b>Photos that make people want to come</b><p>Your real photos, beautifully presented — no false promises.</p></span><span class="tchev">›</span></a>
+        <a href="#devis"><span class="tico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><span><b>Clear information</b><p>Prices, directions, what’s included. Your client never has to search.</p></span><span class="tchev">›</span></a>
+        <a href="#devis"><span class="tico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.4-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 9.5c.5 3 3 5.5 6 6l1.5-1.5-2.5-1.5-1 1a6 6 0 0 1-2-2l1-1L10 8z"/></svg></span><span><b>Direct booking via WhatsApp</b><p>Dates, number of guests: the request lands on your WhatsApp, ready to confirm.</p></span><span class="tchev">›</span></a>
+        <a href="#devis"><span class="tico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h5l1.5 4.5-2.3 1.6a12 12 0 0 0 4.7 4.7l1.6-2.3L21 13v5a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg></span><span><b>Designed for the phone</b><p>That’s where travellers plan their trips.</p></span><span class="tchev">›</span></a>
+        <a href="#devis"><span class="tico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><span><b>In several languages</b><p>English, French and more, depending on your clients.</p></span><span class="tchev">›</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section alt" id="tarifs">
+    <div class="wrap">
+      <div class="tarifs-head">
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">Our pricing</span>
+          <h2>Clear prices, <span class="it">right from the start.</span></h2>
+          <p class="lead">Modern, high-performing websites, tailored to tourism and to your goals.</p>
+        </div>
+        <div class="assure">
+          <span><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span><b>Quote in 48 h</b><small>no strings attached</small></span>
+          <span><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5z"/><path d="m8.5 11.5 2.5 2.5 4.5-4.5"/></svg></span><b>Secure payment</b><small>in stages</small></span>
+          <span><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><b>Support</b><small>from A to Z</small></span>
+        </div>
+      </div>
+      <div class="prices">
+        <article class="price">
+          <span class="pbadge">Essential</span>
+          <img class="pmock" src="../img/tarif-ess.jpg" alt="" loading="lazy">
+          <h3>Your online presence</h3>
+          <div class="amount"><small>from</small><b>390 €</b></div>
+          <p class="for">Your online business card: one elegant page so people can find you and get in touch.</p>
+          <ul>
+            <li>Modern one-page website</li>
+            <li>Looks perfect on phones</li>
+            <li>Direct booking via WhatsApp</li>
+            <li>Launch included</li>
+          </ul>
+          <a class="btn btn-line" href="#devis" data-pack="Essential">I want this website <span class="arrow">→</span></a>
+        </article>
+        <article class="price star">
+          <span class="hand">Perfect for hotels, lodges and tour operators</span>
+          <span class="flag">♛ Most popular</span>
+          <img class="pmock" src="../img/tarif-tour.jpg" alt="" loading="lazy">
+          <h3>Complete Tourism Website</h3>
+          <div class="amount"><small>from</small><b>990 €</b></div>
+          <p class="for">For hotels, lodges, guides and activity providers: a website built to turn visits into bookings.</p>
+          <ul>
+            <li class="plus">Everything in Premium Showcase, plus:</li>
+            <li>Accommodation / tour pages with prices</li>
+            <li>Immersive photo &amp; video gallery</li>
+            <li>Booking request in 2 clicks (WhatsApp)</li>
+            <li>Bilingual FR + EN website included</li>
+            <li>Client reviews &amp; interactive map</li>
+          </ul>
+          <a class="btn btn-gold" href="#devis" data-pack="Tourism">I want this website <span class="arrow">→</span></a>
+        </article>
+        <article class="price">
+          <span class="pbadge">Premium Showcase</span>
+          <img class="pmock" src="../img/tarif-vit.jpg" alt="" loading="lazy">
+          <h3>A tailor-made website for your business</h3>
+          <div class="amount"><small>from</small><b>690 €</b></div>
+          <p class="for">For any business that wants to present all its services and rank better on Google.</p>
+          <ul>
+            <li class="plus">Everything in Essential, plus:</li>
+            <li>Up to 5 pages (services, about, contact…)</li>
+            <li>Google visibility (basic SEO)</li>
+            <li>Design 100% true to your brand</li>
+            <li>Blog / news section (optional)</li>
+          </ul>
+          <a class="btn btn-line" href="#devis" data-pack="Premium Showcase">I want this website <span class="arrow">→</span></a>
+        </article>
+      </div>
+      <div class="social">
+        <img class="scollage" src="../img/social-collage.jpg" alt="Examples of Facebook and Instagram posts">
+        <div>
+          <span class="skicker">Optional · with your website or on its own</span>
+          <h3>Social media &amp; communication</h3>
+          <p>Regular posts on Facebook and Instagram: copy, visuals, content calendar.</p>
+        </div>
+        <a class="sprice" href="#devis" data-pack="Social media">from <b>€190</b> / month <span class="arrow">→</span></a>
+      </div>
+      <p class="small-print">Indicative prices, excluding options (domain name, hosting, copywriting).</p>
+    </div>
+  </section>
+
+
+  <!-- NOSY KOMBA -->
+  <section class="section alt" id="agence">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">Who we are</span>
+          <h2>From Nosy Komba, <span class="it">for the whole world.</span></h2>
+          <p>We are <b>Joanna and Clément</b>, a French-Polish couple living on Nosy Komba, a small island off Nosy Be, Madagascar.</p>
+          <p>We build modern, custom, high-performing websites for tourism, hospitality and any business that wants to grow. Our clients are in Madagascar, Réunion, Mauritius, France, Switzerland, Poland and around the world.</p>
+          <div class="about-feats">
+            <span><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></i>A human approach</span>
+            <span><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2M15 4c2.5-1.5 6-1 6-1s.5 3.5-1 6c-1.6 2.6-5 6-8 8l-4-4c2-3 4.4-6.4 7-9z"/><circle cx="15" cy="9" r="1.6"/></svg></i>Tailor-made solutions</span>
+            <span><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg></i>Real results</span>
+            <span><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="2"/><rect x="17" y="13" width="4" height="6" rx="2"/><path d="M20 19a3 3 0 0 1-3 3h-3"/></svg></i>Support from A to Z</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn btn-gold" href="#devis">Get my quote in 48 h <span class="arrow">→</span></a>
+            <a class="btn btn-line" href="#realisations"><span style="display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;font-size:.6rem">▶</span> See our work</a>
+          </div>
+        </div>
+        <div class="about-side">
+          <img class="about-photo" src="../img/about-duo.jpg" alt="Joanna and Clément, the agency founders, in Nosy Komba — Clément: development, web strategy, SEO; Joanna: design, content, client relations" loading="lazy">
+          <div class="map-card">
+            <img src="../img/about-map.jpg" alt="" loading="lazy">
+            <ul>
+              <li>Madagascar</li>
+              <li>Réunion</li>
+              <li>Mauritius</li>
+              <li>France</li>
+              <li>Switzerland</li>
+              <li>Poland</li>
+              <li>Worldwide</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pays" aria-label="Our main client countries">
+        <span class="plead">Our main<br>client countries <i>→</i></span>
+        <img src="../img/pays-mada.jpg" alt="Madagascar" loading="lazy">
+        <img src="../img/pays-reunion.jpg" alt="Réunion" loading="lazy">
+        <img src="../img/pays-maurice.jpg" alt="Mauritius" loading="lazy">
+        <img src="../img/pays-france.jpg" alt="France" loading="lazy">
+        <img src="../img/pays-suisse.jpg" alt="Switzerland" loading="lazy">
+        <img src="../img/pays-pologne.jpg" alt="Poland" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">How it works</span>
+        <h2>Simple, fast, <span class="it">no headaches.</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>We talk</h3><p>A call or a WhatsApp message to understand your business and your clients.</p></div>
+        <div class="step"><h3>Your quote</h3><p>A clear price and timeline, within 48 h.</p></div>
+        <div class="step"><h3>We build</h3><p>You send photos and info, we build. You approve every step.</p></div>
+        <div class="step"><h3>You’re live</h3><p>Your website is online. We show you how to edit it and stay available.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section alt" id="realisations">
+    <div class="wrap">
+      <div class="real-head2">
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">Our work</span>
+          <h2>Websites people <span class="it">want to click.</span></h2>
+          <p class="lead">Custom, modern, high-performing websites designed to turn visitors into clients.</p>
+        </div>
+        <div class="real-mini">
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6z"/></svg>Modern design</span>
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="15" height="11" rx="2"/><path d="M7 19h5"/><rect x="17" y="9" width="5" height="10" rx="1.5"/></svg>Works on every screen</span>
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg>Results-driven</span>
+          </div>
+      </div>
+
+      <div class="cel-show">
+        <img src="../img/feat-celestia.jpg" alt="Celestia Madagascar website — Île aux Lémuriens — on a laptop and phone, in a tropical setting">
+        <aside class="cel-info">
+          <span class="own-flag">Our own website</span>
+          <h3>Celestia Madagascar</h3>
+          <p class="show-sub">Hotel &amp; bungalows · Nosy Komba</p>
+          <p class="side-desc">An elegant, immersive website for an exceptional stay. We sell our own stays using the same methods we offer our clients.</p>
+          <ul class="feats"><li>Accommodation</li><li>Tours</li><li>Online booking</li><li>FR / EN</li></ul>
+          <a class="btn btn-gold" href="#devis">Let’s talk about your project <span class="arrow">→</span></a>
+        </aside>
+      </div>
+
+      <div class="duo-row">
+        <article class="mir">
+          <div class="side-info">
+            <h3>KokoaKomba</h3>
+            <p class="show-sub">Artisan chocolate maker · Nosy Komba</p>
+            <p class="side-desc">A delicious, authentic website for a local brand celebrating Malagasy craft and flavours.</p>
+            <ul class="feats col"><li>Online shop</li><li>Workshops</li><li>Artisan feel</li></ul>
+          </div>
+          <div class="persp"><img src="../img/feat-kokoa.jpg" alt="KokoaKomba website: chocolate from the tropics, handmade in Nosy Komba" loading="lazy"></div>
+        </article>
+        <article class="mir flip">
+          <div class="persp"><img src="../img/feat-zago.jpg" alt="Website of Zago, painter: paintings inspired by Madagascar" loading="lazy"></div>
+          <div class="side-info">
+            <h3>Zago</h3>
+            <p class="show-sub">Painter · Nosy Komba</p>
+            <p class="side-desc">A clean, artistic website showcasing unique works inspired by Madagascar.</p>
+            <ul class="feats col"><li>Gallery of works</li><li>Custom commissions</li><li>Minimalist design</li></ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="mini-strip">
+        <div class="mini"><img src="../img/mini-ilokomba.jpg" alt="" loading="lazy"><b>Ilo Komba</b><span>Accommodation · Nosy Komba</span></div>
+        <div class="mini"><img src="../img/mini-alina.jpg" alt="" loading="lazy"><b>Alina Trips</b><span>Boat tours</span></div>
+        <div class="mini"><img src="../img/mini-retraite.jpg" alt="" loading="lazy"><b>Retraite Holistique</b><span>Well-being &amp; growth</span></div>
+        <div class="mini"><img src="../img/mini-cdv.jpg" alt="" loading="lazy"><b>CDV Communication</b><span>E-commerce · Gardening</span></div>
+        <div class="mini"><img src="../img/mini-gov.jpg" alt="" loading="lazy"><b>GOV Chauffeur</b><span>Private transport · Paris</span></div>
+        <div class="mini"><img src="../img/mini-travel.jpg" alt="" loading="lazy"><b>Travel Planner</b><span>Tailor-made travel</span></div>
+        <div class="mini"><img src="../img/mini-cocottes.jpg" alt="" loading="lazy"><b>Les Cocottes Terre Sainte</b><span>Holiday rentals</span></div>
+        <div class="mini"><img src="../img/mini-ecole.jpg" alt="" loading="lazy"><b>École Futur</b><span>Non-profit · Education</span></div>
+        <div class="mini"><img src="../img/mini-depannage.jpg" alt="" loading="lazy"><b>Dépannage Chauffage</b><span>Plumbing &amp; heating</span></div>
+      </div>
+
+      <div class="refs">
+        <div>
+          <h3>Want a first-hand opinion?</h3>
+          <p>Ask us for a reference in your sector. We’ll put you in touch with a client whose project is close to yours.</p>
+        </div>
+        <a class="btn btn-line" href="#devis">Ask for a reference</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <span class="faq-bg l" aria-hidden="true"><img src="../img/faq-left.jpg" alt="" loading="lazy"></span>
+    <span class="faq-bg r" aria-hidden="true"><img src="../img/faq-right.jpg" alt="" loading="lazy"></span>
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Frequently asked questions</span>
+        <h2>You might be <span class="it">wondering…</span></h2>
+        <p class="lead">Here are the answers to the questions our clients ask most. If yours isn’t here, just get in touch.</p>
+      </div>
+      <div class="faq">
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><b>How long until my website is ready?</b></summary><p>Between 2 and 12 weeks depending on the size of the project. A simple website sits at the lower end. The exact timeline is stated in the quote and also depends on when we receive your photos and texts.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m3 17 5-4 4 3 4-4 5 5"/></svg></span><b>I don’t have texts or good photos. Is that a problem?</b></summary><p>No. We help you write the texts and choose your best photos. Just mention it in the form.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg></span><b>Can I edit my website myself?</b></summary><p>Yes. We show you how to change a price, a photo or a text. And if you prefer, we can take care of it for you.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><b>I already have a website. Can you redo it?</b></summary><p>Yes, we also do redesigns. Put your website address in the form — we’ll look at it before we reply.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><b>Can the website be in several languages?</b></summary><p>Yes. The Tourism package includes French and English. Other languages are available as options.</p></details>
+        <details><summary><span class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5a4.5 4.5 0 0 1 5 4.5"/></svg></span><b>You’re in Madagascar. How do we work together?</b></summary><p>Fully remotely: video calls, WhatsApp and e-mail. That’s how we work with clients in Réunion, Mauritius, France, Switzerland and Poland.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="devis">
+    <div class="wrap">
+      <div class="contact-aside">
+        <span class="eyebrow">Free quote</span>
+        <h2>Ready to receive <span class="it">more enquiries?</span></h2>
+        <p class="lead">One minute to fill in. We get back to you within 48 h with a proposal and a clear price.</p>
+        <div class="direct">
+          <a href="https://wa.me/261329968289" target="_blank" rel="noopener"><span class="dic wa"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 13.6c-.2.6-1.3 1.1-1.8 1.2-.8.1-1.5 0-3.2-.7a11.9 11.9 0 0 1-4.6-4A5.2 5.2 0 0 1 5.8 9.4a3 3 0 0 1 .9-2.2 1 1 0 0 1 .7-.3h.5c.2 0 .4-.1.6.4l.8 1.8c0 .1.1.2 0 .4-.4 1-1 1-.7 1.4a6.7 6.7 0 0 0 3.3 2.9c.2.1.4.1.5-.1l.8-1c.2-.2.4-.2.6-.1.2.1 1.5.7 1.7.8l.4.3c.1.1.1.6-.1 1.2z"/></svg></span><span><small>WhatsApp</small><span class="val">+261 32 99 682 89</span></span><span class="go">→</span></a>
+          <div><span class="dic ml"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small>E-mail</small><span class="val">contact@monsieurdeveloppeur.com</span></span><span class="go">→</span></div>
+        </div>
+      </div>
+
+      <form id="quote" novalidate>
+        <div id="form-body">
+          <div class="progress">
+            <div class="ptop"><b id="p-title">Your project</b><span id="p-count">Step 1 of 3</span></div>
+            <div class="pbar" id="pbar"><i class="on"></i><i></i><i></i></div>
+          </div>
+
+          <div class="fstep" data-step="1">
+            <fieldset>
+              <span class="legend">What’s your business?</span>
+              <div class="chips">
+                <input type="radio" name="activity" id="a1" value="Hotel / lodge"><label for="a1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-7h18v7M3 18h18M5 11V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v4M7 11V9h5v2"/></svg>🏝️ Hotel / lodge</label>
+                <input type="radio" name="activity" id="a2" value="Guide / tours"><label for="a2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16M6 18l-2-4 8-2 8 2-2 4M12 12V4m0 0 5 6M12 4 7 10"/></svg>⛵ Guide / tours</label>
+                <input type="radio" name="activity" id="a3" value="Rental / villa"><label for="a3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9.5V20h14V9.5M10 20v-6h4v6"/></svg>🏡 Rental / villa</label>
+                <input type="radio" name="activity" id="a4" value="Other business"><label for="a4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>💼 Other business</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <span class="legend">What do you need?</span>
+              <div class="chips">
+                <input type="checkbox" name="need" id="n1" value="New website"><label for="n1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>New website</label>
+                <input type="checkbox" name="need" id="n2" value="Website redesign"><label for="n2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/></svg>Website redesign</label>
+                <input type="checkbox" name="need" id="n3" value="Social media"><label for="n3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.8 7.6-3.6M8.2 13.2l7.6 3.6"/></svg>Social media</label>
+                <input type="checkbox" name="need" id="n4" value="Advertising"><label for="n4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10v4h3l6 4V6l-6 4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>Advertising</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="fstep" data-step="2" hidden>
+            <fieldset>
+              <span class="legend">Your budget <span class="req">*</span></span>
+              <div class="chips">
+                <input type="radio" name="budget" id="b1" value="Under €500"><label for="b1">Under €500</label>
+                <input type="radio" name="budget" id="b2" value="€500 – 1,000"><label for="b2">€500 – 1,000</label>
+                <input type="radio" name="budget" id="b3" value="€1,000 – 2,000"><label for="b3">€1,000 – 2,000</label>
+                <input type="radio" name="budget" id="b4" value="Over €2,000"><label for="b4">Over €2,000</label>
+                <input type="radio" name="budget" id="b5" value="Let’s define it together"><label for="b5">Let’s define it together</label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="f-site">Your current website <span class="opt">(if you have one)</span></label>
+              <input id="f-site" name="site" type="url" placeholder="https://" inputmode="url">
+            </div>
+            <div class="field">
+              <label for="f-msg">A word about your project <span class="opt">(optional)</span></label>
+              <textarea id="f-msg" name="message" placeholder="E.g. a 6-bungalow lodge in Nosy Be, I want to receive requests on WhatsApp."></textarea>
+            </div>
+          </div>
+
+          <div class="fstep" data-step="3" hidden>
+            <div class="row">
+              <div class="field">
+                <label for="f-name">Full name <span class="req">*</span></label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-company">Company <span class="opt">(optional)</span></label>
+                <input id="f-company" name="company" type="text" autocomplete="organization">
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="f-email">E-mail <span class="req">*</span></label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone / WhatsApp <span class="req">*</span></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
+              </div>
+            </div>
+          </div>
+
+          <p class="err" id="f-err" role="alert" hidden></p>
+          <div class="fnav">
+            <button class="btn btn-line btn-back" type="button" id="back" hidden>← Back</button>
+            <p class="grow" id="f-note">Free quote within 48 h. No obligation.</p>
+            <button class="btn btn-gold" type="submit" id="next">Continue <span class="arrow">→</span></button>
+          </div>
+        </div>
+
+        <div class="done" id="done" hidden>
+          <span class="eyebrow">Thank you!</span>
+          <h3>Your request is ready.</h3>
+          <p class="lead" style="font-size:1rem">WhatsApp opens with your message ready to send. If it didn’t open, click below — or copy the request and send it to contact@monsieurdeveloppeur.com.</p>
+          <p id="mail-note" hidden style="color:var(--gold-2);font-weight:600">✓ Your request has also been sent to us by e-mail — a confirmation has just been sent to you.</p>
+          <div class="summary" id="summary"></div>
+          <div class="done-actions">
+            <a class="btn btn-wa" id="wa-send" href="https://wa.me/261329968289" target="_blank" rel="noopener">Send on WhatsApp</a>
+            <button class="btn btn-line" type="button" id="copy">Copy the request</button>
+            <button class="btn btn-line" type="button" id="edit">Edit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2018–2026 Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar</span>
+    <nav aria-label="Footer links">
+      <a href="#tarifs">Pricing</a>
+      <a href="#devis">Contact</a>
+      <a href="https://web.facebook.com/monsieurdeveloppeur" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://wa.me/261329968289" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/261329968289" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>
+</a>
+<div class="mbar">
+  <a class="btn btn-wa" href="https://wa.me/261329968289" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+  <a class="btn btn-gold" href="#devis">Free quote in 48 h</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Animated dotted ocean */
+  var c = document.getElementById('sea');
+  if (c && c.getContext){
+    var x = c.getContext('2d'), w = 0, h = 0, dpr = 1, sparks = [];
+    function size(){
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = c.clientWidth; h = c.clientHeight;
+      c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+      x.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sparks = [];
+      var n = Math.round(Math.min(60, w / 22));
+      for (var i = 0; i < n; i++) sparks.push({x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.4 + .3, s: Math.random() * .25 + .05, p: Math.random() * 6.28});
+    }
+    function draw(t){
+      x.clearRect(0, 0, w, h);
+      var rows = 22;
+      for (var i = 0; i < rows; i++){
+        var p = i / (rows - 1);
+        var y0 = h * .5 + Math.pow(p, 1.5) * h * .62;
+        var amp = 5 + p * 20;
+        var step = 9 + p * 9;
+        var gold = p > .45;
+        var a = .1 + p * .55;
+        x.fillStyle = gold ? 'rgba(212,175,90,' + a.toFixed(3) + ')' : 'rgba(134,200,242,' + (a * .9).toFixed(3) + ')';
+        var rad = .55 + p * 1.25;
+        for (var px = -step; px < w + step; px += step){
+          var y = y0 + Math.sin(px * .006 + t * .00055 + i * .42) * amp + Math.sin(px * .015 - t * .0003 + i) * amp * .35;
+          x.beginPath(); x.arc(px, y, rad, 0, 6.283); x.fill();
+        }
+      }
+      for (var k = 0; k < sparks.length; k++){
+        var s = sparks[k];
+        var tw = .35 + .65 * Math.abs(Math.sin(t * .0012 + s.p));
+        x.fillStyle = 'rgba(244,222,159,' + (tw * .55).toFixed(3) + ')';
+        x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.283); x.fill();
+        if (!reduce){ s.y -= s.s; if (s.y < -4){ s.y = h * .7 + Math.random() * h * .3; s.x = Math.random() * w; } }
+      }
+    }
+    var running = true;
+    function loop(t){ if (running) draw(t); requestAnimationFrame(loop); }
+    size(); draw(0);
+    window.addEventListener('resize', function(){ size(); draw(performance.now()); });
+    if (!reduce){
+      if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(e){ running = e[0].isIntersecting; }).observe(c);
+      }
+      requestAnimationFrame(loop);
+    }
+  }
+
+  /* Rotating promise */
+  var rot = document.getElementById('rot');
+  var words = ['bookings.', 'clients.', 'enquiries.', 'revenue.'];
+  var wi = 0;
+  if (rot && !reduce){
+    setInterval(function(){
+      rot.classList.add('out');
+      setTimeout(function(){
+        wi = (wi + 1) % words.length;
+        rot.textContent = words[wi];
+        rot.classList.remove('out'); rot.classList.add('in');
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){ rot.classList.remove('in'); }); });
+      }, 350);
+    }, 2800);
+  }
+
+  /* Incoming requests next to the phone */
+  var feed = document.getElementById('feed');
+  var ICONS = {
+    w: '<svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 13.6c-.2.6-1.3 1.1-1.8 1.2-.8.1-1.5 0-3.2-.7a11.9 11.9 0 0 1-4.6-4A5.2 5.2 0 0 1 5.8 9.4a3 3 0 0 1 .9-2.2 1 1 0 0 1 .7-.3h.5c.2 0 .4-.1.6.4l.8 1.8c0 .1.1.2 0 .4-.4 1-1 1-.7 1.4a6.7 6.7 0 0 0 3.3 2.9c.2.1.4.1.5-.1l.8-1c.2-.2.4-.2.6-.1.2.1 1.5.7 1.7.8l.4.3c.1.1.1.6-.1 1.2z"/></svg>',
+    m: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+    g: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="#fff" stroke="none"/></svg>'
+  };
+  var msgs = [
+    ['w', 'New request', 'now', 'Is there still a bungalow for 4 in August?'],
+    ['m', 'Quote request', '5 min ago', 'Boat trip for 6 people, Saturday morning.'],
+    ['g', 'New message', '12 min ago', 'Hi! Are your tours available in August?']
+  ];
+  function note(m, cls){
+    var d = document.createElement('div');
+    d.className = 'note ' + cls;
+    d.innerHTML = '<i class="' + m[0] + '">' + ICONS[m[0]] + '</i><span><span class="nt"><em>' + m[1] + '</em><time>' + m[2] + '</time></span><p>' + m[3] + '</p></span>';
+    return d;
+  }
+  if (feed){
+    feed.appendChild(note(msgs[0], ''));
+    feed.appendChild(note(msgs[1], 'o1'));
+    feed.appendChild(note(msgs[2], 'o2'));
+    if (!reduce){
+      var mi = 0;
+      setInterval(function(){
+        mi = (mi + 1) % msgs.length;
+        var order = [msgs[mi], msgs[(mi + 2) % 3], msgs[(mi + 1) % 3]];
+        feed.innerHTML = '';
+        feed.appendChild(note(order[0], 'new'));
+        feed.appendChild(note(order[1], 'o1'));
+        feed.appendChild(note(order[2], 'o2'));
+      }, 4200);
+    }
+  }
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mnav');
+  if (burger && mnav){
+    burger.addEventListener('click', function(){
+      var open = mnav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ mnav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+
+  /* Quote form - step by step */
+  var form = document.getElementById('quote');
+  var body = document.getElementById('form-body');
+  var done = document.getElementById('done');
+  var err = document.getElementById('f-err');
+  var summaryEl = document.getElementById('summary');
+  var pack = '';
+  var step = 1, TOTAL = 3;
+  var titles = {1:'Your project', 2:'Your budget', 3:'Your details'};
+  var steps = form.querySelectorAll('.fstep');
+  var backBtn = document.getElementById('back');
+  var nextBtn = document.getElementById('next');
+
+  document.querySelectorAll('[data-pack]').forEach(function(a){
+    a.addEventListener('click', function(){ pack = a.getAttribute('data-pack'); });
+  });
+
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function checked(name){
+    return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function(i){ return i.value; });
+  }
+
+  function show(n){
+    step = n;
+    steps.forEach(function(el){ el.hidden = el.getAttribute('data-step') != n; });
+    document.querySelectorAll('#pbar i').forEach(function(el, i){ el.classList.toggle('on', i < n); });
+    document.getElementById('p-count').textContent = 'Step ' + n + ' of ' + TOTAL;
+    document.getElementById('p-title').textContent = titles[n];
+    backBtn.hidden = n === 1;
+    nextBtn.innerHTML = n < TOTAL ? 'Continue <span class="arrow">→</span>' : 'Get my quote <span class="arrow">→</span>';
+    err.hidden = true;
+  }
+  show(1);
+
+  backBtn.addEventListener('click', function(){ if (step > 1) show(step - 1); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (step === 1){ show(2); return; }
+    if (step === 2){
+      if (!checked('budget').length){
+        err.textContent = 'Choose a budget — “Let’s define it together” is perfectly fine.';
+        err.hidden = false;
+        return;
+      }
+      show(3); return;
+    }
+    var missing = [];
+    if (!val('f-name')) missing.push('your name');
+    var email = val('f-email');
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) missing.push('a valid e-mail');
+    if (!val('f-phone')) missing.push('your phone number');
+    if (missing.length){
+      err.textContent = 'Please add ' + missing.join(', ') + '.';
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+
+    var lines = [
+      'Hello, I would like a quote.',
+      '',
+      'Name: ' + val('f-name'),
+      val('f-company') ? 'Company: ' + val('f-company') : '',
+      'E-mail: ' + email,
+      'Phone: ' + val('f-phone'),
+      checked('activity').length ? 'Business: ' + checked('activity').join(', ') : '',
+      checked('need').length ? 'Need: ' + checked('need').join(', ') : '',
+      pack ? 'Package viewed: ' + pack : '',
+      'Budget: ' + checked('budget').join(', '),
+      val('f-site') ? 'Current website: ' + val('f-site') : '',
+      val('f-msg') ? '\nProject: ' + val('f-msg') : ''
+    ].filter(function(l){ return l !== ''; });
+    var text = lines.join('\n');
+
+    summaryEl.textContent = text;
+    var waUrl = 'https://wa.me/261329968289?text=' + encodeURIComponent(text);
+    document.getElementById('wa-send').href = waUrl;
+    body.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+    // envoi e-mail : copie pour l'agence + confirmation automatique au client (FormSubmit)
+    try {
+      fetch('https://formsubmit.co/ajax/contact@monsieurdeveloppeur.com', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({
+          _subject: 'New quote request (EN) — ' + val('f-name') + ' (' + checked('budget').join(', ') + ')',
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: email,
+          _honey: '',
+          _autoresponse: "Hello, thank you for your quote request! We've received it and will get back to you within 48 hours with a clear proposal. For a faster reply, you can also message us directly on WhatsApp: +261 32 99 682 89. Talk soon — Joanna & Clément, Agence Digitale Monsieur Développeur · Nosy Komba, Madagascar · monsieurdeveloppeur.com",
+          'Nom': val('f-name'),
+          'Entreprise': val('f-company') || '—',
+          'E-mail': email,
+          'Téléphone / WhatsApp': val('f-phone'),
+          'Activité': checked('activity').join(', ') || '—',
+          'Besoin': checked('need').join(', ') || '—',
+          'Formule vue': pack || '—',
+          'Budget': checked('budget').join(', '),
+          'Site actuel': val('f-site') || '—',
+          'Message': val('f-msg') || '—'
+        })
+      }).then(function(r){
+        if (r.ok) { var n = document.getElementById('mail-note'); if (n) n.hidden = false; }
+      }).catch(function(){});
+    } catch (e) {}
+    // envoi direct : ouvre WhatsApp avec la demande pré-remplie (le panneau reste en secours)
+    var a = document.createElement('a');
+    a.href = waUrl; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  document.getElementById('edit').addEventListener('click', function(){
+    done.hidden = true; body.hidden = false; show(3);
+  });
+
+  document.getElementById('copy').addEventListener('click', function(){
+    var btn = this;
+    var text = summaryEl.textContent;
+    function selectFallback(){
+      var r = document.createRange(); r.selectNodeContents(summaryEl);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Text selected';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function(){ btn.textContent = 'Copied'; }, selectFallback);
+    } catch (e) { selectFallback(); }
+  });
+})();
+</script>
+</body>
+</html>
